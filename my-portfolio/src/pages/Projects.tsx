@@ -13,55 +13,42 @@ import { FiGithub, FiExternalLink, FiStar } from 'react-icons/fi';
 const projectsData = [
   {
     id: 1,
-    title: 'AI-Powered Content Generator',
-    description: 'A full-stack application that uses advanced LLMs to generate high-quality content for various use cases.',
-    longDescription: 'This project leverages state-of-the-art language models to create an intelligent content generation platform. Built with React, Node.js, and integrated with OpenAI APIs, it features real-time content generation, user authentication, and a responsive design.',
+    title: 'NetViz Pro — Reliable Transport Simulator',
+    description: 'Engineered a custom Reliable UDP Protocol handling binary file transfers, sliding window ARQ, and congestion control.',
+    longDescription: 'Engineered a custom Reliable UDP Protocol handling binary file transfers, sliding window ARQ, and congestion control, simulating TCP reliability mechanics at the byte level. Architected a distributed system where a Java Core engine streams real-time packet telemetry to a React Dashboard via a custom Node.js/WebSocket bridge. Implemented Fault Tolerance (Retransmission Timers, Cumulative ACKs) guaranteeing 100% data integrity during simulated 30% packet loss conditions.',
     image: '/placeholder.svg',
-    technologies: ['React', 'Node.js', 'OpenAI API', 'MongoDB', 'Express.js', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/jagadeswar/ai-content-generator',
-    liveUrl: 'https://ai-content-gen-demo.com',
+    technologies: ['Java', 'Node.js', 'React', 'UDP', 'WebSockets'],
+    githubUrl: 'https://github.com/Jagadeesh9110/NetViz',
+    liveUrl: 'https://github.com/Jagadeesh9110/NetViz',
     featured: true,
-    lighthouseScore: 95,
-    category: 'AI/ML'
+    lighthouseScore: 98,
+    category: 'Systems Engineering'
   },
   {
     id: 2,
-    title: 'Smart Analytics Dashboard',
-    description: 'A comprehensive data visualization platform with real-time analytics and machine learning insights.',
-    longDescription: 'An advanced analytics dashboard built with modern web technologies and machine learning algorithms. Features include real-time data processing, predictive analytics, interactive visualizations, and automated reporting.',
+    title: 'devOrbit — AI Bug Intelligence',
+    description: 'Developed and deployed a comprehensive bug intelligence and team collaboration platform using Next.js and MongoDB.',
+    longDescription: 'Developed and deployed a comprehensive bug intelligence and team collaboration platform using Next.js, TypeScript, and MongoDB. Implemented secure authentication with JWT and Social OAuth and constructed core dashboard pages for Teams. Designed intuitive user flows for new and existing users and integrated AI-powered bug analysis using Xenova/Transformers.',
     image: '/placeholder.svg',
-    technologies: ['Next.js', 'Python', 'TensorFlow', 'PostgreSQL', 'D3.js', 'AWS'],
-    githubUrl: 'https://github.com/jagadeswar/analytics-dashboard',
-    liveUrl: 'https://analytics-dashboard-demo.com',
+    technologies: ['Next.js', 'TypeScript', 'MongoDB', 'TailwindCSS', 'JWT', 'OAuth'],
+    githubUrl: 'https://github.com/Jagadeesh9110/devOrbit',
+    liveUrl: 'https://dev-orbit-rust.vercel.app/',
     featured: true,
-    lighthouseScore: 92,
-    category: 'Data Science'
+    lighthouseScore: 95,
+    category: 'Full Stack'
   },
   {
     id: 3,
-    title: 'E-commerce Platform',
-    description: 'A modern, scalable e-commerce solution with advanced features and seamless user experience.',
-    longDescription: 'A full-featured e-commerce platform built with modern technologies. Includes user authentication, payment processing, inventory management, order tracking, and an admin dashboard.',
+    title: 'AI-Powered Medical Chatbot',
+    description: 'Engineered a full-stack real-time chat application using React.js, Node.js, Express.js, and MongoDB with Gemini API.',
+    longDescription: 'Engineered a full-stack real-time chat application using React.js, Node.js, Express.js, and MongoDB. Integrated the Google Gemini API for high-accuracy production inference, while prototyping a custom-trained medical model for domain-specific fine-tuning. Developed a secure backend with JWT authentication and optimized frontend state for zero-latency data streams.',
     image: '/placeholder.svg',
-    technologies: ['React', 'Node.js', 'Stripe API', 'Redis', 'Docker', 'AWS'],
-    githubUrl: 'https://github.com/jagadeswar/ecommerce-platform',
-    liveUrl: 'https://ecommerce-demo.com',
-    featured: false,
-    lighthouseScore: 89,
-    category: 'Full Stack'
-  },
-  {
-    id: 4,
-    title: 'Real-time Chat Application',
-    description: 'A scalable chat application with real-time messaging, file sharing, and group management.',
-    longDescription: 'A modern chat application built with Socket.io and React. Features include real-time messaging, file sharing, group chat, user authentication, message encryption, and mobile responsiveness.',
-    image: '/placeholder.svg',
-    technologies: ['React', 'Socket.io', 'Node.js', 'MongoDB', 'JWT', 'Cloudinary'],
-    githubUrl: 'https://github.com/jagadeswar/chat-app',
-    liveUrl: 'https://chat-app-demo.com',
-    featured: false,
-    lighthouseScore: 91,
-    category: 'Full Stack'
+    technologies: ['React.js', 'Node.js', 'WebSockets', 'MongoDB', 'Express.js', 'Gemini API'],
+    githubUrl: 'https://github.com/Jagadeesh9110/React-App-LLM',
+    liveUrl: 'https://github.com/Jagadeesh9110/React-App-LLM', // Resume only gives Source Code
+    featured: true,
+    lighthouseScore: 92,
+    category: 'AI/ML'
   },
 ];
 
@@ -103,7 +90,7 @@ const ProjectCard = memo(({ project, onSelect }: ProjectCardProps) => {
   }, [project.githubUrl]);
 
   const handleLiveClick = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     window.open(project.liveUrl, '_blank');
   }, [project.liveUrl]);
 
@@ -120,7 +107,7 @@ const ProjectCard = memo(({ project, onSelect }: ProjectCardProps) => {
               {project.title.charAt(0)}
             </div>
           </div>
-          
+
           {project.featured && (
             <div className="absolute top-4 right-4">
               <Badge className="bg-neon-green text-dark-navy">
@@ -317,7 +304,7 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-dark-navy">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-dark-navy to-light-navy">
         <div className="max-w-6xl mx-auto section-padding">
@@ -349,11 +336,10 @@ const Projects = () => {
                 key={category}
                 onClick={() => handleSetCategory(category)} // Uses memoized handler
                 variant={activeCategory === category ? "default" : "outline"}
-                className={`${
-                  activeCategory === category
-                    ? 'bg-neon-blue text-dark-navy'
-                    : 'glass-effect text-light-slate hover:bg-neon-blue/10 hover:text-neon-blue'
-                } transition-all duration-300`}
+                className={`${activeCategory === category
+                  ? 'bg-neon-blue text-dark-navy'
+                  : 'glass-effect text-light-slate hover:bg-neon-blue/10 hover:text-neon-blue'
+                  } transition-all duration-300`}
               >
                 {category}
               </Button>
@@ -373,10 +359,10 @@ const Projects = () => {
           >
             <AnimatePresence mode="wait">
               {filteredProjects.map((project) => (
-                <ProjectCard 
-                  key={project.id} 
-                  project={project} 
-                  onSelect={handleSelectProject} 
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onSelect={handleSelectProject}
                 />
               ))}
             </AnimatePresence>

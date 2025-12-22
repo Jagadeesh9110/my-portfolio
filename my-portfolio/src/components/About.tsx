@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { motion, type Variants } from 'framer-motion'; 
+import { motion, type Variants } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { SkillConstellation } from './SkillConstellation';
@@ -7,18 +7,22 @@ import { SkillConstellation } from './SkillConstellation';
 import {
   SiGit,
   SiGithub,
-  SiVsco, 
+  SiVsco,
   SiVercel,
   SiNetlify,
   SiRender,
   SiGithubactions,
+  SiPostman,
+  SiMongodb,
 } from 'react-icons/si';
 
 const tools = [
-  { name: 'VS Code', icon: SiVsco, color: '#007ACC' }, 
+  { name: 'VS Code', icon: SiVsco, color: '#007ACC' }, // Added
   { name: 'Git', icon: SiGit, color: '#F05032' },
   { name: 'GitHub', icon: SiGithub, color: '#E8E8E8' },
   { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088FF' },
+  { name: 'Postman', icon: SiPostman, color: '#FF6C37' }, // Added
+  { name: 'MongoDB', icon: SiMongodb, color: '#47A248' }, // Added
   { name: 'Vercel', icon: SiVercel, color: '#E8E8E8' },
   { name: 'Netlify', icon: SiNetlify, color: '#00C7B7' },
   { name: 'Render', icon: SiRender, color: '#46E3B7' },
@@ -30,7 +34,7 @@ const staggerContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, 
+      staggerChildren: 0.1,
     },
   },
 };
@@ -73,29 +77,23 @@ const About = memo(() => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Card className="glass-effect p-8 hover-glow">
+            <Card className="glass-effect p-8 hover-glow h-full">
               <h3 className="text-2xl font-bold text-neon-blue mb-6">
                 Background
               </h3>
               <div className="space-y-4 text-light-slate">
                 <p>
-                  I'm a passionate Full Stack AI Engineer with a B.Tech in Data
-                  Science from IIIT Dharwad and a minor in Generative AI. I love
-                  creating intelligent solutions that bridge the gap between
-                  complex AI technologies and user-friendly applications.
+                  I'm a proactive learner and <span className="font-bold text-lightest-slate">Full Stack Developer</span> skilled in
+                  <span className="text-neon-green"> React.js, Next.js, Node.js, and TypeScript</span>.
                 </p>
                 <p>
-                  My journey in tech started with web development, but I quickly
-                  discovered my passion for artificial intelligence and machine
-                  learning. Today, I specialize in building full-stack
-                  applications that leverage cutting-edge AI technologies to
-                  solve real-world problems.
+                  I have a strong background in <span className="text-neon-green">Systems Engineering</span> and <span className="text-neon-green">Data Structures & Algorithms (DSA)</span>,
+                  having solved <span className="text-neon-blue font-bold">409+ LeetCode problems</span> with a contest rating of 1519.
                 </p>
                 <p>
-                  When I'm not coding, you can find me exploring the latest AI
-                  research papers, contributing to open-source projects, or
-                  experimenting with new technologies that push the boundaries
-                  of what's possible.
+                  My experience includes building scalable applications featuring
+                  <span className="text-neon-green"> JWT, OAuth, and Real-time Communication</span>.
+                  I am currently seeking an internship to contribute to impactful engineering projects.
                 </p>
               </div>
             </Card>
@@ -116,38 +114,37 @@ const About = memo(() => {
               <div className="space-y-6">
                 <div>
                   <h4 className="text-xl font-semibold text-lightest-slate">
-                    B.Tech in Data Science
+                    Indian Institute of Information Technology Dharwad
                   </h4>
-                  <p className="text-neon-blue font-medium">IIIT Dharwad</p>
-                  <p className="text-slate text-sm">2020 - 2024</p>
-                  <p className="text-light-slate mt-2">
-                    Full-Stack development • Minor in Generative AI • Focus on Machine Learning, Deep
-                    Learning, and AI Applications. 
-                  </p>
+                  <p className="text-neon-blue font-medium">B.Tech — Data Science and Artificial Intelligence</p>
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="text-slate text-sm">Expected Graduation: 2027</p>
+                    <p className="text-neon-green font-bold text-sm">GPA: 8.21</p>
+                  </div>
                 </div>
               </div>
             </Card>
 
             <Card className="glass-effect p-8 hover-glow">
               <h3 className="text-2xl font-bold text-neon-blue mb-6">
-                Learning Path
+                Core Concepts
               </h3>
               <div className="space-y-3 text-light-slate">
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-neon-green rounded-full mr-3 flex-shrink-0" />
-                  Deep Learning & Transformers (CNNs, LLMs)
+                  Data Structures & Algorithms (DSA)
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-neon-green rounded-full mr-3 flex-shrink-0" />
-                  Advanced ML Frameworks (JAX, Flax)
+                  Object-Oriented Programming (OOP)
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-neon-green rounded-full mr-3 flex-shrink-0" />
-                  MLOps & AI Infrastructure (Docker, Kubernetes)
+                  Database Management Systems (DBMS)
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-neon-green rounded-full mr-3 flex-shrink-0" />
-                  Systems Programming (Rust & Go)
+                  Operating Systems (OS) & Computer Networks
                 </div>
               </div>
             </Card>
@@ -195,7 +192,7 @@ const About = memo(() => {
           </motion.div>
         </div>
         {/* --- END: TOOLS SECTION --- */}
-        
+
       </div>
     </section>
   );

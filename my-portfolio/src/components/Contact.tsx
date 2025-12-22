@@ -18,7 +18,7 @@ const socialLinks = [
   {
     name: 'GitHub',
     icon: FiGithub,
-    href: 'https://github.com/Jagadeesh9110',
+    href: 'https://github.com/Jagadeesh9110?tab=repositories',
     color: 'text-gray-400',
     handle: 'github.com/Jagadeesh9110',
   },
@@ -39,17 +39,17 @@ const MemoizedContactInfo = memo(() => {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="space-y-8" 
+      className="space-y-8"
     >
-      <Card className="glass-effect p-6 sm:p-8 hover-glow"> 
+      <Card className="glass-effect p-6 sm:p-8 hover-glow">
         <h3 className="text-2xl font-bold text-neon-blue mb-6">
           Let's Connect
         </h3>
-        <p className="text-light-slate mb-8 text-sm sm:text-base"> 
+        <p className="text-light-slate mb-8 text-sm sm:text-base">
           I'm currently looking for new opportunities and exciting projects. My
           inbox is always open for interesting collaborations!
         </p>
-        <div className="space-y-4 sm:space-y-6"> 
+        <div className="space-y-4 sm:space-y-6">
           {socialLinks.map((social, index) => (
             <motion.a
               key={social.name}
@@ -67,7 +67,7 @@ const MemoizedContactInfo = memo(() => {
               <div
                 className={`p-2 sm:p-3 rounded-lg bg-lightest-navy/50 ${social.color} group-hover:scale-110 transition-transform duration-300 flex-shrink-0`} // Added flex-shrink-0
               >
-                <social.icon className="w-5 h-5 sm:w-6 sm:h-6" /> 
+                <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div className="flex flex-col flex-grow min-w-0">
                 <p className="font-medium text-lightest-slate group-hover:text-neon-blue transition-colors text-sm sm:text-base"> {/* Adjusted font size */}
@@ -81,11 +81,11 @@ const MemoizedContactInfo = memo(() => {
           ))}
         </div>
       </Card>
-      <Card className="glass-effect p-6 sm:p-8 hover-glow"> 
+      <Card className="glass-effect p-6 sm:p-8 hover-glow">
         <h4 className="text-lg font-semibold text-neon-green mb-4">
           Quick Info
         </h4>
-        <div className="space-y-2 sm:space-y-3 text-light-slate text-sm sm:text-base"> 
+        <div className="space-y-2 sm:space-y-3 text-light-slate text-sm sm:text-base">
           <div className="flex justify-between">
             <span>Location:</span>
             <span className="text-lightest-slate">India</span>
@@ -142,7 +142,7 @@ const Contact = () => {
   );
 
   return (
-    <section className="py-16 sm:py-20 bg-light-navy relative overflow-hidden"> 
+    <section className="py-16 sm:py-20 bg-light-navy relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
         <div className="absolute top-10 left-5 w-24 h-24 sm:w-32 sm:h-32 border border-neon-blue rounded-full" />
         <div className="absolute bottom-10 right-5 w-16 h-16 sm:w-24 sm:h-24 bg-neon-green/20 rounded-full" />
@@ -154,21 +154,21 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-16" 
+          className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="font-mono text-neon-blue mr-4">03.</span>
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-neon-blue mx-auto rounded-full mb-6 sm:mb-8" /> 
-          <p className="text-base sm:text-lg text-light-slate max-w-xl mx-auto"> 
+          <div className="w-24 h-1 bg-neon-blue mx-auto rounded-full mb-6 sm:mb-8" />
+          <p className="text-base sm:text-lg text-light-slate max-w-xl mx-auto">
             I'm always interested in new opportunities and exciting projects.
             Whether you have a question or just want to say hi, feel free to
             reach out!
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12"> 
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -180,7 +180,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-neon-blue mb-6">
                 Send a Message
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6"> 
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}

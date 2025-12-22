@@ -34,30 +34,30 @@ const achievements = [
   {
     icon: Trophy,
     title: 'LeetCode Rating',
-    value: '1500',
-    label: 'Highest Contest Rating',
+    value: '1519',
+    label: 'Max Contest Rating',
     color: 'text-neon-green',
   },
   {
     icon: FiCode,
     title: 'Problems Solved',
-    value: '385',
-    label: 'Total on LeetCode',
+    value: '409+',
+    label: 'DSA Proficiency',
     color: 'text-neon-blue',
   },
   {
     icon: FiTarget,
-    title: 'Weekly Contests',
-    value: 'Active',
-    label: 'Regular Participant',
+    title: 'Active Contests',
+    value: '37+',
+    label: 'LeetCode & CodeChef',
     color: 'text-neon-green',
   },
 ];
 
 const socialLinks = [
-  { icon: FiGithub, href: 'https://github.com/Jagadeesh9110', label: 'GitHub' },
-  { icon: FiLinkedin, href: 'https://linkedin.com/in/jagadeeswar-reddy-manyam', label: 'LinkedIn' },
-  { icon: FiMail, href: 'manyamjagadeeswar7989@gmail.com', label: 'Email' },
+  { icon: FiGithub, href: 'https://github.com/Jagadeesh9110?tab=repositories', label: 'GitHub' },
+  { icon: FiLinkedin, href: 'https://www.linkedin.com/in/jagadeeswar-reddy-manyam', label: 'LinkedIn' },
+  { icon: FiMail, href: 'mailto:manyamjagadeeswar7989@gmail.com', label: 'Email' },
 ];
 
 //  Created a new memoized component for the static content
@@ -77,7 +77,7 @@ const MemoizedHeroContent = memo(() => {
           <Avatar className="relative w-32 h-32 md:w-40 md:h-40 border-4 border-transparent hover-glow transition-all duration-300">
             <AvatarImage
               src="/profile.jpg"
-              alt="Manyam Jagadeswar Reddy"
+              alt="Manyam Jagadeeswar Reddy"
               className="object-cover"
             />
             <AvatarFallback className="bg-lightest-navy text-neon-blue text-2xl md:text-3xl font-bold">
@@ -109,29 +109,30 @@ const MemoizedHeroContent = memo(() => {
         variants={itemVariants}
         className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-lightest-slate mb-4"
       >
-        Manyam Jagadeswar Reddy
+        Manyam Jagadeeswar Reddy
       </motion.h1>
 
       <motion.h2
         variants={itemVariants}
         className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate mb-8"
       >
-        I build intelligent digital experiences.
+        Full Stack Developer. <br className="hidden md:block" />
+        Systems Engineering Enthusiast.
       </motion.h2>
 
       <motion.p
         variants={itemVariants}
         className="text-lg md:text-xl text-slate max-w-2xl mx-auto mb-12 leading-relaxed"
       >
-        I'm a Full Stack AI Engineer specializing in creating exceptional digital
-        solutions that live at the intersection of design, technology, and
-        artificial intelligence.
+        Proactive learner skilled in React.js, Next.js, Node.js, and TypeScript.
+        Strong background in Systems Engineering and DSA, with extensive experience
+        in building scalable applications using JWT, OAuth, and Real-time Communication.
       </motion.p>
 
       {/* Achievements Section */}
       <motion.div variants={itemVariants} className="mb-12">
         <h3 className="text-xl md:text-2xl font-bold text-neon-blue mb-6 font-mono">
-          Competitive Programming Achievements
+          Competitive Programming & DSA
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {achievements.map((achievement, index) => (
@@ -274,7 +275,7 @@ const Hero = () => {
   useEffect(() => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [handleMouseMove]); 
+  }, [handleMouseMove]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
