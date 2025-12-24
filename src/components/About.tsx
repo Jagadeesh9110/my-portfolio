@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { SkillConstellation } from './SkillConstellation';
 
 import {
   SiGit,
@@ -151,8 +150,6 @@ const About = memo(() => {
           </motion.div>
         </div>
 
-        {/* Skills Section */}
-        <SkillConstellation />
 
         {/* --- TOOLS SECTION --- */}
         <div className="mt-24">

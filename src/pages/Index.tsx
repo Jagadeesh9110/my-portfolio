@@ -24,7 +24,6 @@ const Index = () => {
         <SkillConstellation />
       </section>
 
-      {/* Projects component already has id="projects" (from refactor) */}
       <Projects />
 
       <section id="contact">
