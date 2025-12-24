@@ -2,7 +2,7 @@
 
 A modern, responsive single-page developer portfolio showcasing my projects, skills, and engineering background. Built with a focus on clean UI, smooth interactions, and performance.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://your-portfolio-link.vercel.app)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://my-portfolio-weld-pi-24.vercel.app/)
 [![GitHub](https://img.shields.io/badge/github-repository-blue)](https://github.com/Jagadeesh9110/my-portfolio)
 [![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
