@@ -65,7 +65,7 @@ const MemoizedHeroContent = memo(() => {
   return (
     <>
       {/* Profile Photo */}
-      <motion.div variants={itemVariants} className="mb-8 flex justify-center">
+      <motion.div variants={itemVariants} className="mb-8 mt-20 md:mt-24 flex justify-center">
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

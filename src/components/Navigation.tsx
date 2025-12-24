@@ -70,8 +70,8 @@ const Navigation = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? 'bg-dark-navy/95 backdrop-blur-md shadow-lg border-b border-white/10'
-          : 'bg-transparent'
+        ? 'bg-dark-navy/95 backdrop-blur-md shadow-lg border-b border-white/10'
+        : 'bg-transparent pointer-events-none'
         }`}
     >
       <div className="max-w-7xl mx-auto section-padding">
@@ -100,8 +100,8 @@ const Navigation = () => {
                 <button
                   onClick={() => scrollToSection(item.id)}
                   className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${activeSection === item.id
-                      ? 'text-neon-blue'
-                      : 'text-light-slate hover:text-neon-blue'
+                    ? 'text-neon-blue'
+                    : 'text-light-slate hover:text-neon-blue'
                     }`}
                 >
                   <span className="font-mono text-neon-blue mr-2">
@@ -185,8 +185,8 @@ const Navigation = () => {
                   <button
                     onClick={() => scrollToSection(item.id)}
                     className={`block w-full text-left px-4 py-3 text-lg font-medium rounded-lg transition-all duration-200 ${activeSection === item.id
-                        ? 'text-neon-blue bg-neon-blue/10'
-                        : 'text-light-slate hover:text-neon-blue hover:bg-white/5'
+                      ? 'text-neon-blue bg-neon-blue/10'
+                      : 'text-light-slate hover:text-neon-blue hover:bg-white/5'
                       }`}
                   >
                     <span className="font-mono text-neon-blue mr-3">
