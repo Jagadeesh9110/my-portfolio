@@ -1,15 +1,13 @@
-import React, { useState, useCallback, useMemo, memo } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import Navigation from '@/components/Navigation';
-import AIChatbot from '@/components/AIChatbot';
 import { FiGithub, FiExternalLink, FiStar } from 'react-icons/fi';
 
 // 1. --- CONSTANTS ---
-// All this data is now created only ONCE, not on every render.
+// All this data is created only ONCE, not on every render.
 const projectsData = [
   {
     id: 1,
@@ -278,15 +276,6 @@ const ProjectModal = memo(({ project, onClose }: ProjectModalProps) => {
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [activeCategory, setActiveCategory] = useState('All');
-
-  // useMemo ensures this filtering logic only re-runs when
-  // activeCategory changes. projectsData is stable.
-  const filteredProjects = useMemo(() => {
-    return activeCategory === 'All'
-      ? projectsData
-      : projectsData.filter(project => project.category === activeCategory);
-  }, [activeCategory]);
 
   // useCallback ensures these functions are not re-created on every render
   const handleSelectProject = useCallback((project: Project) => {
@@ -297,16 +286,10 @@ const Projects = () => {
     setSelectedProject(null);
   }, []);
 
-  const handleSetCategory = useCallback((category: string) => {
-    setActiveCategory(category);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-dark-navy">
-      <Navigation />
-
+    <section id="projects" className="min-h-screen bg-dark-navy">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-dark-navy to-light-navy">
+      <div className="pt-20 pb-20 bg-gradient-to-b from-dark-navy to-light-navy">
         <div className="max-w-6xl mx-auto section-padding">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -323,33 +306,11 @@ const Projects = () => {
               artificial intelligence, and modern web technologies.
             </p>
           </motion.div>
-
-          {/* Category Filter */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
-          >
-            {categories.map((category) => (
-              <Button
-                key={category}
-                onClick={() => handleSetCategory(category)} // Uses memoized handler
-                variant={activeCategory === category ? "default" : "outline"}
-                className={`${activeCategory === category
-                  ? 'bg-neon-blue text-dark-navy'
-                  : 'glass-effect text-light-slate hover:bg-neon-blue/10 hover:text-neon-blue'
-                  } transition-all duration-300`}
-              >
-                {category}
-              </Button>
-            ))}
-          </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Projects Grid */}
-      <section className="py-20 bg-light-navy">
+      <div className="py-20 bg-light-navy">
         <div className="max-w-7xl mx-auto section-padding">
           <motion.div
             variants={containerVariants}
@@ -358,7 +319,7 @@ const Projects = () => {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             <AnimatePresence mode="wait">
-              {filteredProjects.map((project) => (
+              {projectsData.map((project) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
@@ -368,13 +329,11 @@ const Projects = () => {
             </AnimatePresence>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Project Modal */}
       <ProjectModal project={selectedProject} onClose={handleCloseModal} />
-
-      <AIChatbot />
-    </div>
+    </section>
   );
 };
 

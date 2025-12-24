@@ -1,56 +1,78 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NavLink } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi';
 import { useTheme } from 'next-themes';
 
-const navItems=[
-    { name: 'About', path: '/' },
-  { name: 'Projects', path: '/projects' },
-]
+const navItems = [
+  { name: 'Home', id: 'hero' },
+  { name: 'About', id: 'about' },
+  { name: 'Skills', id: 'skills' },
+  { name: 'Projects', id: 'projects' },
+  { name: 'Contact', id: 'contact' },
+];
 
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { theme, setTheme } = useTheme();
+  // Active section state
+  const [activeSection, setActiveSection] = useState('hero');
 
-const Navigation=()=>{
-    const [isOpen, setIsOpen] =useState(false);
-    const [scrolled, setScrolled] = useState(false);
-     const {theme,setTheme} = useTheme();// here we should use the {} not [] because useTheme returns an object not an array
-     
-     // Memoized event handlers
-      const handleScroll = useCallback(()=>{
-          setScrolled(window.scrollY > 50);
-      }, []);
-      const toggleTheme = useCallback(() => {
-           setTheme(theme === 'dark' ? 'light' : 'dark');
-            
-         }, [theme,setTheme]); 
+  // Handle scroll detection and active section
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 50);
 
-      const toggleMobileMenu = useCallback(() => {
-            setIsOpen((prev) => !prev);
-        }, []);
+    // Determine active section
+    const sections = navItems.map(item => item.id);
+    let current = 'hero';
 
-      const closeMobileMenu = useCallback(() => {
-           setIsOpen(false);
-        }, []);
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        // If the section is substantially in view (adjust threshold as needed)
+        // Using a simple logic: if top is within a reasonable range
+        if (rect.top <= 200 && rect.bottom >= 200) {
+          current = section;
+        }
+      }
+    }
+    setActiveSection(current);
+  }, []);
 
-        // Effect depends on the memoized handlers
-        useEffect(() => {
-            window.addEventListener('scroll', handleScroll);
-            return () => {
-                window.removeEventListener('scroll', handleScroll);
-            };
-        }, [handleScroll]);
+  const scrollToSection = useCallback((id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false); // Close mobile menu if open
+    }
+  }, []);
 
-     return(
-        <motion.nav
+  const toggleTheme = useCallback(() => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  }, [theme, setTheme]);
+
+  const toggleMobileMenu = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
+  return (
+    <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? 'bg-dark-navy/95 backdrop-blur-md shadow-lg border-b border-white/10'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto section-padding">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -58,13 +80,12 @@ const Navigation=()=>{
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => scrollToSection('hero')}
+            className="cursor-pointer"
           >
-            <NavLink
-              to="/"
-              className="text-xl lg:text-2xl font-bold text-gradient font-mono"
-            >
+            <span className="text-xl lg:text-2xl font-bold text-gradient font-mono">
               MJR
-            </NavLink>
+            </span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -76,34 +97,27 @@ const Navigation=()=>{
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.3 }}
               >
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                      isActive
-                        ? 'text-neon-blue'
-                        : 'text-light-slate hover:text-neon-blue'
-                    }`
-                  }
+                <button
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${activeSection === item.id
+                      ? 'text-neon-blue'
+                      : 'text-light-slate hover:text-neon-blue'
+                    }`}
                 >
-                  {({ isActive }) => (
-                    <>
-                      <span className="font-mono text-neon-blue mr-2">
-                        0{index + 1}.
-                      </span>
-                      {item.name}
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeTab"
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-blue"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                      )}
-                    </>
+                  <span className="font-mono text-neon-blue mr-2">
+                    0{index + 1}.
+                  </span>
+                  {item.name}
+                  {activeSection === item.id && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-blue"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
                   )}
-                </NavLink>
+                </button>
               </motion.div>
             ))}
 
@@ -132,7 +146,7 @@ const Navigation=()=>{
             <Button
               variant="ghost"
               size="sm"
-              onClick={toggleMobileMenu} // Use memoized handler
+              onClick={toggleMobileMenu}
               className="text-light-slate"
             >
               <motion.div
@@ -168,22 +182,18 @@ const Navigation=()=>{
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <NavLink
-                    to={item.path}
-                    onClick={closeMobileMenu} // Use memoized handler
-                    className={({ isActive }) =>
-                      `block px-4 py-3 text-lg font-medium rounded-lg transition-all duration-200 ${
-                        isActive
-                          ? 'text-neon-blue bg-neon-blue/10'
-                          : 'text-light-slate hover:text-neon-blue hover:bg-white/5'
-                      }`
-                    }
+                  <button
+                    onClick={() => scrollToSection(item.id)}
+                    className={`block w-full text-left px-4 py-3 text-lg font-medium rounded-lg transition-all duration-200 ${activeSection === item.id
+                        ? 'text-neon-blue bg-neon-blue/10'
+                        : 'text-light-slate hover:text-neon-blue hover:bg-white/5'
+                      }`}
                   >
                     <span className="font-mono text-neon-blue mr-3">
                       0{index + 1}.
                     </span>
                     {item.name}
-                  </NavLink>
+                  </button>
                 </motion.div>
               ))}
               <motion.div
@@ -194,7 +204,7 @@ const Navigation=()=>{
               >
                 <Button
                   variant="outline"
-                  onClick={toggleTheme} // Use memoized handler
+                  onClick={toggleTheme}
                   className="w-full glass-effect"
                 >
                   {theme === 'dark' ? (
@@ -215,10 +225,7 @@ const Navigation=()=>{
         )}
       </AnimatePresence>
     </motion.nav>
-     );
+  );
+};
 
-}
-
-
-// 4. Export the component (no memo needed as it's a top-level layout)
 export default Navigation;

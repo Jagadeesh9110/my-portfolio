@@ -8,6 +8,7 @@
 
 /* shadcn light/dark variables */
 @layer base {
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -73,7 +74,7 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-
+    overflow-x: hidden;
   }
 
   html {
@@ -112,8 +113,14 @@
     border-radius: 3px;
   }
 
+  /* Horizontal section padding */
   .section-padding {
     @apply px-6 sm:px-8 lg:px-12 xl:px-16 2xl:px-20;
+  }
+
+  /* Vertical spacing for major sections */
+  .section-spacing {
+    @apply py-16 md:py-24;
   }
 }
 
@@ -129,9 +136,36 @@
   animation: skills-marquee 35s linear infinite;
 }
 
+/* Pause on hover (desktop) */
 .skills-marquee:hover .skills-track {
   animation-play-state: paused;
 }
+
+/* Mobile improvements */
+@media (max-width: 640px) {
+  .skills-marquee {
+    padding: 2.5rem 0;
+    /* More breathing room */
+  }
+
+  .skills-track {
+    animation-duration: 45s;
+    /* Slower, readable motion */
+  }
+
+  .skill-pill {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Pause animation on tap (mobile UX win) */
+@media (hover: none) {
+  .skills-marquee:active .skills-track {
+    animation-play-state: paused;
+  }
+}
+
 
 @keyframes skills-marquee {
   from {
