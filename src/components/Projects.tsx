@@ -50,7 +50,6 @@ const projectsData = [
   },
 ];
 
-const categories = ['All', 'AI/ML', 'Full Stack', 'Data Science'];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -80,6 +79,7 @@ interface ProjectCardProps {
   onSelect: (project: Project) => void;
 }
 
+
 const ProjectCard = memo(({ project, onSelect }: ProjectCardProps) => {
   // Memoize click handlers to prevent creating new functions on render
   const handleGithubClick = useCallback((e: React.MouseEvent) => {
@@ -98,13 +98,24 @@ const ProjectCard = memo(({ project, onSelect }: ProjectCardProps) => {
 
   return (
     <motion.div variants={itemVariants} layout className="group">
-      <Card className="glass-effect hover-glow h-full transition-all duration-500 group-hover:scale-105 cursor-pointer overflow-hidden">
+      <Card
+        className="glass-effect hover-glow h-full transition-all duration-500 group-hover:scale-105 cursor-pointer overflow-hidden"
+        onMouseEnter={() => (window as any).__CURSOR__?.show("Show project")}
+        onMouseLeave={() => (window as any).__CURSOR__?.hide()}
+      >
         <div className="relative">
-          <div className="aspect-video bg-gradient-to-br from-lightest-navy to-dark-slate rounded-t-lg flex items-center justify-center">
-            <div className="text-4xl font-bold text-neon-blue/30">
-              {project.title.charAt(0)}
-            </div>
+          <div className="aspect-video overflow-hidden rounded-t-lg">
+            <motion.div
+              className="w-full h-full bg-gradient-to-br from-lightest-navy to-dark-slate flex items-center justify-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <div className="text-4xl font-bold text-neon-blue/30">
+                {project.title.charAt(0)}
+              </div>
+            </motion.div>
           </div>
+
 
           {project.featured && (
             <div className="absolute top-4 right-4">
@@ -250,7 +261,19 @@ const ProjectModal = memo(({ project, onClose }: ProjectModalProps) => {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-light-slate">Category</span>
-                  <Badge variant="outline">{project.category}</Badge>
+                  <div className="relative h-6 overflow-hidden text-sm text-light-slate">
+                    {/* Default text */}
+                    <div className="transition-transform duration-300 group-hover:-translate-y-6">
+                      {project.category}
+                    </div>
+
+                    {/* Hover text */}
+                    <div className="absolute left-0 top-6 flex items-center gap-2 text-neon-blue transition-transform duration-300 group-hover:-translate-y-6">
+                      Show project
+                      <span className="w-6 h-px bg-neon-blue" />
+                    </div>
+                  </div>
+
                 </div>
                 {project.featured && (
                   <div className="flex justify-between items-center">

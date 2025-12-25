@@ -7,10 +7,14 @@ import { Tools } from '@/components/Tools';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import AIChatbot from '@/components/AIChatbot';
+import CursorFollower from "@/components/CursorFollower";
+
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-dark-navy">
+      <CursorFollower />
+
       <Navigation />
 
       <section id="hero" >
