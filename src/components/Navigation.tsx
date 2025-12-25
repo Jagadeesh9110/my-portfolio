@@ -15,7 +15,7 @@ const navItems = [
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
   // Active section state
   const [activeSection, setActiveSection] = useState('hero');
 
@@ -49,9 +49,9 @@ const Navigation = () => {
     }
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  }, [theme, setTheme]);
+  // const toggleTheme = useCallback(() => {
+  //   setTheme(theme === 'dark' ? 'light' : 'dark');
+  // }, [theme, setTheme]);
 
   const toggleMobileMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -126,7 +126,7 @@ const Navigation = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <Button
+              {/* <Button
                 variant="outline"
                 size="sm"
                 onClick={toggleTheme}
@@ -137,7 +137,7 @@ const Navigation = () => {
                 ) : (
                   <FiMoon className="w-4 h-4" />
                 )}
-              </Button>
+              </Button> */}
             </motion.div>
           </div>
 
@@ -202,7 +202,7 @@ const Navigation = () => {
                 transition={{ delay: 0.3 }}
                 className="pt-4"
               >
-                <Button
+                {/* <Button
                   variant="outline"
                   onClick={toggleTheme}
                   className="w-full glass-effect"
@@ -218,7 +218,7 @@ const Navigation = () => {
                       Dark Mode
                     </>
                   )}
-                </Button>
+                </Button> */}
               </motion.div>
             </div>
           </motion.div>

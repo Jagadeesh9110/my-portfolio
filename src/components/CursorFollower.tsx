@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-
-// global cursor follower , Appears only when activated by hover targets (projects).
 const CursorFollower = () => {
-    const [active, setActive] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+    const [cursorText, setCursorText] = useState('');
 
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -22,11 +21,17 @@ const CursorFollower = () => {
         return () => window.removeEventListener("mousemove", move);
     }, [mouseX, mouseY]);
 
-    // Global API (used by project cards)
+    // Global API for project cards
     useEffect(() => {
         (window as any).__CURSOR__ = {
-            enter: () => setActive(true),
-            leave: () => setActive(false),
+            show: (text: string) => {
+                setIsHovering(true);
+                setCursorText(text);
+            },
+            hide: () => {
+                setIsHovering(false);
+                setCursorText('');
+            },
         };
     }, []);
 
@@ -40,27 +45,34 @@ const CursorFollower = () => {
                 translateY: "-50%",
             }}
         >
-            {/* Small dot (always visible) */}
+            {/* Default cursor - Circle with centered dot */}
             <motion.div
-                className="absolute w-2 h-2 rounded-full bg-neon-blue"
-                animate={{ scale: active ? 0 : 1 }}
-            />
+                className="relative flex items-center justify-center"
+                animate={{
+                    scale: isHovering ? 0 : 1,
+                    opacity: isHovering ? 0 : 1,
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+                {/* Outer circle */}
+                <div className="w-8 h-8 rounded-full border-2 border-neon-blue/60 flex items-center justify-center">
+                    {/* Inner dot */}
+                    <div className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+                </div>
+            </motion.div>
 
-            {/* Hover ring */}
+            {/* Hover cursor - Larger circle with + */}
             <motion.div
                 animate={{
-                    scale: active ? 1 : 0,
-                    opacity: active ? 1 : 0,
+                    scale: isHovering ? 1 : 0,
+                    opacity: isHovering ? 1 : 0,
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="
-          w-10 h-10
-          rounded-full
-          border border-neon-blue/70
-          flex items-center justify-center
-        "
+                className="absolute inset-0 flex items-center justify-center"
             >
-                <span className="text-neon-blue text-lg leading-none">+</span>
+                <div className="w-20 h-20 rounded-full border-2 border-neon-blue/70 bg-neon-blue/5 flex items-center justify-center">
+                    <span className="text-neon-blue text-2xl font-light leading-none">+</span>
+                </div>
             </motion.div>
         </motion.div>
     );

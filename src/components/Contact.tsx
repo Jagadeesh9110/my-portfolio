@@ -46,9 +46,9 @@ const MemoizedContactInfo = memo(() => {
           Let's Connect
         </h3>
         <p className="text-light-slate mb-8 text-sm sm:text-base">
-          I'm currently looking for new opportunities and exciting projects. My
-          inbox is always open for interesting collaborations!
+          Prefer email or LinkedIn? You can reach me directly here. I’m open to SDE internships, junior backend/full‑stack roles, and collaborations on serious, long‑term projects.
         </p>
+
         <div className="space-y-4 sm:space-y-6">
           {socialLinks.map((social, index) => (
             <motion.a
@@ -157,15 +157,19 @@ const Contact = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="font-mono text-neon-blue mr-4">03.</span>
+            <span className="font-mono text-neon-blue mr-4">04.</span>
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-neon-blue mx-auto rounded-full mb-6 sm:mb-8" />
           <p className="text-base sm:text-lg text-light-slate max-w-xl mx-auto">
-            I'm always interested in new opportunities and exciting projects.
-            Whether you have a question or just want to say hi, feel free to
-            reach out!
+            <span className="block mb-2">
+              Let’s ship something real.
+            </span>
+            <span>
+              If you’re hiring for a full-stack or backend‑leaning role, or you’re building a product that needs someone who can own features end‑to‑end, I’d love to hear from you. I’m especially interested in SDE internships, junior roles, and impactful side projects.
+            </span>
           </p>
+
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
@@ -182,6 +186,7 @@ const Contact = () => {
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <motion.div
+
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -220,7 +225,7 @@ const Contact = () => {
                 >
                   <Textarea
                     name="message"
-                    placeholder="Your Message"
+                    placeholder="Tell me about the role, project, or question..."
                     value={formData.message}
                     onChange={handleInputChange}
                     required
@@ -252,7 +257,7 @@ const Contact = () => {
                     ) : (
                       <>
                         <FiSend className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                        Send Message
+                        Let’s talk
                       </>
                     )}
                   </Button>
