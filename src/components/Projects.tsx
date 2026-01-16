@@ -81,16 +81,10 @@ const Projects = () => {
 
   const handleCardMouseEnter = useCallback((projectId: number) => {
     setHoveredCard(projectId);
-    if (typeof window !== 'undefined' && (window as any).__CURSOR__) {
-      (window as any).__CURSOR__.show("Show project");
-    }
   }, []);
 
   const handleCardMouseLeave = useCallback(() => {
     setHoveredCard(null);
-    if (typeof window !== 'undefined' && (window as any).__CURSOR__) {
-      (window as any).__CURSOR__.hide();
-    }
   }, []);
 
   return (
@@ -136,7 +130,7 @@ const Projects = () => {
                   className="group"
                 >
                   <Card
-                    className="glass-effect hover-glow h-full transition-all duration-500 group-hover:scale-105 cursor-pointer overflow-hidden"
+                    className="glass-effect hover-glow h-full transition-all duration-500 group-hover:scale-105 cursor-pointer overflow-hidden cursor-target"
                     onMouseEnter={() => handleCardMouseEnter(project.id)}
                     onMouseLeave={handleCardMouseLeave}
                   >

@@ -242,7 +242,7 @@ const Contact = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-neon-blue hover:bg-neon-blue/90 text-dark-navy font-medium py-3 transition-all duration-300 group"
+                    className="cursor-target w-full bg-neon-blue hover:bg-neon-blue/90 text-dark-navy font-medium py-3 transition-all duration-300 group"
                   >
                     {isSubmitting ? (
                       <motion.div

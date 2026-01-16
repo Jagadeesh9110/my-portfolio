@@ -7,13 +7,18 @@ import { Tools } from '@/components/Tools';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import AIChatbot from '@/components/AIChatbot';
-import CursorFollower from "@/components/CursorFollower";
+import TargetCursor from "@/components/TargetCursor";
 
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-dark-navy">
-      <CursorFollower />
+      <TargetCursor
+        targetSelector=".cursor-target"
+        spinDuration={2}
+        hideDefaultCursor={true}
+        parallaxOn={true}
+      />
 
       <Navigation />
 

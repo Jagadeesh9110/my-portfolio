@@ -215,7 +215,7 @@ const MemoizedHeroContent = memo(() => {
       >
         <Button
           size="lg"
-          className="bg-transparent border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-navy font-medium px-8 py-4 rounded-lg transition-all duration-300 group"
+          className="cursor-target bg-transparent border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-navy font-medium px-8 py-4 rounded-lg transition-all duration-300 group"
         >
           <FiDownload className="w-5 h-5 mr-2 group-hover:animate-bounce" />
           Download Resume
@@ -226,7 +226,7 @@ const MemoizedHeroContent = memo(() => {
             <motion.a
               key={social.label}
               href={social.href}
-              className="p-3 text-light-slate hover:text-neon-blue hover:-translate-y-1 transition-all duration-300 hover-glow rounded-lg glass-effect"
+              className="cursor-target p-3 text-light-slate hover:text-neon-blue hover:-translate-y-1 transition-all duration-300 hover-glow rounded-lg glass-effect"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}

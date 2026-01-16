@@ -92,7 +92,7 @@ const AIChatbot = () => {
       >
         <Button
           onClick={toggleOpen} // Use memoized handler
-          className="w-14 h-14 rounded-full bg-neon-blue hover:bg-neon-blue/90 text-dark-navy shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow"
+          className="cursor-target w-14 h-14 rounded-full bg-neon-blue hover:bg-neon-blue/90 text-dark-navy shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow"
         >
           <FiMessageSquare className="w-6 h-6" />
         </Button>
@@ -149,16 +149,14 @@ const AIChatbot = () => {
                       key={message.id}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={`flex ${
-                        message.isBot ? 'justify-start' : 'justify-end'
-                      }`}
+                      className={`flex ${message.isBot ? 'justify-start' : 'justify-end'
+                        }`}
                     >
                       <div
-                        className={`max-w-[80%] p-3 rounded-2xl ${
-                          message.isBot
+                        className={`max-w-[80%] p-3 rounded-2xl ${message.isBot
                             ? 'bg-lightest-navy text-light-slate'
                             : 'bg-neon-blue text-dark-navy'
-                        }`}
+                          }`}
                       >
                         <p className="text-sm">{message.text}</p>
                       </div>
@@ -202,7 +200,7 @@ const AIChatbot = () => {
                     <Button
                       type="submit"
                       size="sm"
-                      className="bg-neon-blue hover:bg-neon-blue/90 text-dark-navy"
+                      className="cursor-target bg-neon-blue hover:bg-neon-blue/90 text-dark-navy"
                     >
                       <FiSend className="w-4 h-4" />
                     </Button>
