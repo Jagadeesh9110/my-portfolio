@@ -1,11 +1,11 @@
-import React, { useState, useCallback, memo } from 'react';
+import React, { useRef, useState, memo } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { FiMail, FiGithub, FiLinkedin, FiSend } from 'react-icons/fi';
-import { useToast } from '@/hooks/use-toast';
 
 const socialLinks = [
   {
@@ -46,7 +46,7 @@ const MemoizedContactInfo = memo(() => {
           Let's Connect
         </h3>
         <p className="text-light-slate mb-8 text-sm sm:text-base">
-          Prefer email or LinkedIn? You can reach me directly here. I’m open to SDE internships, junior backend/full‑stack roles, and collaborations on serious, long‑term projects.
+          Prefer email or LinkedIn? You can reach me directly here. I'm open to SDE internships, junior backend/full‑stack roles, and collaborations on serious, long‑term projects.
         </p>
 
         <div className="space-y-4 sm:space-y-6">
@@ -105,41 +105,33 @@ const MemoizedContactInfo = memo(() => {
 });
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+  const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = e.target;
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    },
-    [],
-  );
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
-      setIsSubmitting(true);
+    if (!formRef.current) return;
 
-      setTimeout(() => {
-        setIsSubmitting(false);
-        toast({
-          title: 'Message sent!',
-          description: "Thank you for reaching out. I'll get back to you soon!",
-        });
-        setFormData({ name: '', email: '', message: '' });
-      }, 2000);
-    },
-    [toast],
-  );
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_PUBLIC_KEY
+      );
+
+      alert('Message sent successfully!');
+      formRef.current.reset();
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section className="py-16 sm:py-20 bg-light-navy relative overflow-hidden">
@@ -163,10 +155,10 @@ const Contact = () => {
           <div className="w-24 h-1 bg-neon-blue mx-auto rounded-full mb-6 sm:mb-8" />
           <p className="text-base sm:text-lg text-light-slate max-w-xl mx-auto">
             <span className="block mb-2">
-              Let’s ship something real.
+              Let's ship something real.
             </span>
             <span>
-              If you’re hiring for a full-stack or backend‑leaning role, or you’re building a product that needs someone who can own features end‑to‑end, I’d love to hear from you. I’m especially interested in SDE internships, junior roles, and impactful side projects.
+              If you're hiring for a full-stack or backend‑leaning role, or you're building a product that needs someone who can own features end‑to‑end, I'd love to hear from you. I'm especially interested in SDE internships, junior roles, and impactful side projects.
             </span>
           </p>
 
@@ -184,7 +176,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-neon-blue mb-6">
                 Send a Message
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <motion.div
 
                   initial={{ opacity: 0, y: 20 }}
@@ -193,10 +185,8 @@ const Contact = () => {
                   transition={{ delay: 0.3 }}
                 >
                   <Input
-                    name="name"
+                    name="user_name"
                     placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleInputChange}
                     required
                     className="bg-lightest-navy/50 border-white/20 text-lightest-slate placeholder-slate focus:border-neon-blue"
                   />
@@ -208,11 +198,9 @@ const Contact = () => {
                   transition={{ delay: 0.4 }}
                 >
                   <Input
-                    name="email"
+                    name="user_email"
                     type="email"
                     placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
                     required
                     className="bg-lightest-navy/50 border-white/20 text-lightest-slate placeholder-slate focus:border-neon-blue"
                   />
@@ -226,8 +214,6 @@ const Contact = () => {
                   <Textarea
                     name="message"
                     placeholder="Tell me about the role, project, or question..."
-                    value={formData.message}
-                    onChange={handleInputChange}
                     required
                     rows={6}
                     className="bg-lightest-navy/50 border-white/20 text-lightest-slate placeholder-slate focus:border-neon-blue resize-none"
@@ -245,19 +231,22 @@ const Contact = () => {
                     className="cursor-target w-full bg-neon-blue hover:bg-neon-blue/90 text-dark-navy font-medium py-3 transition-all duration-300 group"
                   >
                     {isSubmitting ? (
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          duration: 1,
-                          repeat: Infinity,
-                          ease: 'linear',
-                        }}
-                        className="w-5 h-5 border-2 border-dark-navy border-t-transparent rounded-full"
-                      />
+                      <>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: 'linear',
+                          }}
+                          className="w-5 h-5 border-2 border-dark-navy border-t-transparent rounded-full mr-2"
+                        />
+                        Sending...
+                      </>
                     ) : (
                       <>
                         <FiSend className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                        Let’s talk
+                        Let's talk
                       </>
                     )}
                   </Button>

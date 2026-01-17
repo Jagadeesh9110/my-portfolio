@@ -55,7 +55,7 @@ const achievements = [
 ];
 
 const socialLinks = [
-  { icon: FiGithub, href: 'https://github.com/Jagadeesh9110?tab=repositories', label: 'GitHub' },
+  { icon: FiGithub, href: 'https://github.com/Jagadeesh9110', label: 'GitHub' },
   { icon: FiLinkedin, href: 'https://www.linkedin.com/in/jagadeeswar-reddy-manyam', label: 'LinkedIn' },
   { icon: FiMail, href: 'mailto:manyamjagadeeswar7989@gmail.com', label: 'Email' },
 ];
@@ -213,13 +213,16 @@ const MemoizedHeroContent = memo(() => {
         variants={itemVariants}
         className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
       >
-        <Button
-          size="lg"
-          className="cursor-target bg-transparent border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-navy font-medium px-8 py-4 rounded-lg transition-all duration-300 group"
+        <motion.a
+          href="/resume.pdf"
+          download="Manyam_Jagadeeswar_Reddy_Resume.pdf"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="cursor-target inline-flex items-center bg-transparent border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-navy font-medium px-8 py-4 rounded-lg transition-all duration-300 group"
         >
           <FiDownload className="w-5 h-5 mr-2 group-hover:animate-bounce" />
           Download Resume
-        </Button>
+        </motion.a>
 
         <div className="flex items-center space-x-4">
           {socialLinks.map((social, index) => (

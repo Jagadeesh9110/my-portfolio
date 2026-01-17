@@ -7,21 +7,9 @@ import { Button } from '@/components/ui/button';
 import { FiGithub, FiExternalLink, FiStar } from 'react-icons/fi';
 
 const projectsData = [
+
   {
     id: 1,
-    title: 'NetViz Pro — Reliable Transport Simulator',
-    description: 'Engineered a custom Reliable UDP Protocol handling binary file transfers, sliding window ARQ, and congestion control.',
-    longDescription: 'Engineered a custom Reliable UDP Protocol handling binary file transfers, sliding window ARQ, and congestion control, simulating TCP reliability mechanics at the byte level. Architected a distributed system where a Java Core engine streams real-time packet telemetry to a React Dashboard via a custom Node.js/WebSocket bridge. Implemented Fault Tolerance (Retransmission Timers, Cumulative ACKs) guaranteeing 100% data integrity during simulated 30% packet loss conditions.',
-    image: '/placeholder.svg',
-    technologies: ['Java', 'Node.js', 'React', 'UDP', 'WebSockets'],
-    githubUrl: 'https://github.com/Jagadeesh9110/NetViz',
-    liveUrl: 'https://github.com/Jagadeesh9110/NetViz',
-    featured: true,
-    lighthouseScore: 98,
-    category: 'Systems Engineering'
-  },
-  {
-    id: 2,
     title: 'devOrbit — AI Bug Intelligence',
     description: 'Developed and deployed a comprehensive bug intelligence and team collaboration platform using Next.js and MongoDB.',
     longDescription: 'Developed and deployed a comprehensive bug intelligence and team collaboration platform using Next.js, TypeScript, and MongoDB. Implemented secure authentication with JWT and Social OAuth and constructed core dashboard pages for Teams. Designed intuitive user flows for new and existing users and integrated AI-powered bug analysis using Xenova/Transformers.',
@@ -34,7 +22,7 @@ const projectsData = [
     category: 'Full Stack'
   },
   {
-    id: 3,
+    id: 2,
     title: 'AI-Powered Medical Chatbot',
     description: 'Engineered a full-stack real-time chat application using React.js, Node.js, Express.js, and MongoDB with Gemini API.',
     longDescription: 'Engineered a full-stack real-time chat application using React.js, Node.js, Express.js, and MongoDB. Integrated the Google Gemini API for high-accuracy production inference, while prototyping a custom-trained medical model for domain-specific fine-tuning. Developed a secure backend with JWT authentication and optimized frontend state for zero-latency data streams.',
@@ -45,6 +33,19 @@ const projectsData = [
     featured: true,
     lighthouseScore: 92,
     category: 'AI/ML'
+  },
+  {
+    id: 3,
+    title: 'NetViz Pro — Reliable Transport Simulator',
+    description: 'Engineered a custom Reliable UDP Protocol handling binary file transfers, sliding window ARQ, and congestion control.',
+    longDescription: 'Engineered a custom Reliable UDP Protocol handling binary file transfers, sliding window ARQ, and congestion control, simulating TCP reliability mechanics at the byte level. Architected a distributed system where a Java Core engine streams real-time packet telemetry to a React Dashboard via a custom Node.js/WebSocket bridge. Implemented Fault Tolerance (Retransmission Timers, Cumulative ACKs) guaranteeing 100% data integrity during simulated 30% packet loss conditions.',
+    image: '/placeholder.svg',
+    technologies: ['Java', 'Node.js', 'React', 'UDP', 'WebSockets'],
+    githubUrl: 'https://github.com/Jagadeesh9110/NetViz',
+    liveUrl: 'https://github.com/Jagadeesh9110/NetViz',
+    featured: true,
+    lighthouseScore: 98,
+    category: 'Systems Engineering'
   },
 ];
 
