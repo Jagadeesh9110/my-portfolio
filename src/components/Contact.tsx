@@ -18,7 +18,7 @@ const socialLinks = [
   {
     name: 'GitHub',
     icon: FiGithub,
-    href: 'https://github.com/Jagadeesh9110?tab=repositories',
+    href: 'https://github.com/Jagadeesh9110',
     color: 'text-gray-400',
     handle: 'github.com/Jagadeesh9110',
   },
