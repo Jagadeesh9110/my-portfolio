@@ -41,7 +41,7 @@ const achievements = [
   {
     icon: FiCode,
     title: 'Problems Solved',
-    value: '409+',
+    value: '440+',
     label: 'DSA Proficiency',
     color: 'text-neon-blue',
   },
