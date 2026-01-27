@@ -184,7 +184,7 @@ const MemoizedHeroContent = memo(() => {
                 >
                   Easy
                 </Badge>
-                <div className="text-xl font-bold text-lightest-slate">150</div>
+                <div className="text-xl font-bold text-lightest-slate">173</div>
               </div>
               <div className="text-center">
                 <Badge
@@ -193,7 +193,7 @@ const MemoizedHeroContent = memo(() => {
                 >
                   Medium
                 </Badge>
-                <div className="text-xl font-bold text-lightest-slate">224</div>
+                <div className="text-xl font-bold text-lightest-slate">259</div>
               </div>
               <div className="text-center">
                 <Badge
@@ -202,7 +202,7 @@ const MemoizedHeroContent = memo(() => {
                 >
                   Hard
                 </Badge>
-                <div className="text-xl font-bold text-lightest-slate">11</div>
+                <div className="text-xl font-bold text-lightest-slate">12</div>
               </div>
             </div>
           </Card>

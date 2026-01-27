@@ -40,7 +40,7 @@ const About = memo(() => {
                 </p>
                 <p>
                   I have a strong background in <span className="text-neon-green">Systems Engineering</span> and <span className="text-neon-green">Data Structures & Algorithms (DSA)</span>,
-                  having solved <span className="text-neon-blue font-bold">440+ LeetCode problems</span> with a contest rating of 1519.
+                  having solved <span className="text-neon-blue font-bold">444 LeetCode problems</span> with a contest rating of 1519.
                 </p>
                 <p>
                   My experience includes building scalable applications featuring
