@@ -2,10 +2,7 @@ import React, { useEffect, useState, memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { FiDownload, FiGithub, FiLinkedin, FiMail, FiCode, FiTarget } from 'react-icons/fi';
-import { Trophy } from 'lucide-react';
+import { FiDownload, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 
 //  All constants moved outside the component to optmize the performance
 const containerVariants = {
@@ -30,29 +27,7 @@ const itemVariants = {
   },
 };
 
-const achievements = [
-  {
-    icon: Trophy,
-    title: 'LeetCode Rating',
-    value: '1519',
-    label: 'Max Contest Rating',
-    color: 'text-neon-green',
-  },
-  {
-    icon: FiCode,
-    title: 'Problems Solved',
-    value: '440+',
-    label: 'DSA Proficiency',
-    color: 'text-neon-blue',
-  },
-  {
-    icon: FiTarget,
-    title: 'Active Contests',
-    value: '37+',
-    label: 'LeetCode & CodeChef',
-    color: 'text-neon-green',
-  },
-];
+
 
 const socialLinks = [
   { icon: FiGithub, href: 'https://github.com/Jagadeesh9110', label: 'GitHub' },
@@ -101,118 +76,41 @@ const MemoizedHeroContent = memo(() => {
 
       <motion.div variants={itemVariants} className="mb-6">
         <span className="font-mono text-neon-blue text-sm md:text-base">
-          Hi, my name is
+          Full-Stack Engineer | Scalable Web Systems
         </span>
       </motion.div>
 
       <motion.h1
         variants={itemVariants}
-        className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-lightest-slate mb-4"
+        className="text-4xl md:text-6xl lg:text-7xl xl:text-7xl font-bold text-lightest-slate mb-4"
       >
         Manyam Jagadeeswar Reddy
       </motion.h1>
 
       <motion.h2
         variants={itemVariants}
-        className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate mb-8"
+        className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate mb-10"
       >
-        Full Stack Developer. <br className="hidden md:block" />
-        Systems Engineering Enthusiast.
+        I design and scale production-ready full-stack systems with responsive interfaces, real-time communication, secure backend architecture, and performance-driven engineering.
       </motion.h2>
-
-      <motion.p
-        variants={itemVariants}
-        className="text-lg md:text-xl text-slate max-w-2xl mx-auto mb-12 leading-relaxed"
-      >
-        Proactive learner skilled in React.js, Next.js, Node.js, and TypeScript.
-        Strong background in Systems Engineering and DSA, with extensive experience
-        in building scalable applications using JWT, OAuth, and Real-time Communication.
-      </motion.p>
-
-      {/* Achievements Section */}
-      <motion.div variants={itemVariants} className="mb-12">
-        <h3 className="text-xl md:text-2xl font-bold text-neon-blue mb-6 font-mono">
-          Competitive Programming & DSA
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={achievement.title}
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 1.5 + index * 0.2, duration: 0.6 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Card className="glass-effect p-6 hover-glow group transition-all duration-300">
-                <div className="flex flex-col items-center text-center">
-                  <achievement.icon
-                    className={`w-8 h-8 mb-3 ${achievement.color} group-hover:scale-110 transition-transform duration-300`}
-                  />
-                  <div
-                    className={`text-2xl md:text-3xl font-bold ${achievement.color} mb-2`}
-                  >
-                    {achievement.value}
-                  </div>
-                  <div className="text-lightest-slate font-semibold mb-1">
-                    {achievement.title}
-                  </div>
-                  <div className="text-slate text-sm">
-                    {achievement.label}
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* LeetCode Problem Breakdown */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.1, duration: 0.6 }}
-          className="mt-8 max-w-2xl mx-auto"
-        >
-          <Card className="glass-effect p-6 hover-glow">
-            <h4 className="text-lg font-semibold text-neon-green mb-4">
-              Problem Difficulty Breakdown
-            </h4>
-            <div className="flex justify-center space-x-6">
-              <div className="text-center">
-                <Badge
-                  variant="secondary"
-                  className="bg-green-500/20 text-green-400 border-green-500/30 mb-2"
-                >
-                  Easy
-                </Badge>
-                <div className="text-xl font-bold text-lightest-slate">173</div>
-              </div>
-              <div className="text-center">
-                <Badge
-                  variant="secondary"
-                  className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30 mb-2"
-                >
-                  Medium
-                </Badge>
-                <div className="text-xl font-bold text-lightest-slate">259</div>
-              </div>
-              <div className="text-center">
-                <Badge
-                  variant="secondary"
-                  className="bg-red-500/20 text-red-400 border-red-500/30 mb-2"
-                >
-                  Hard
-                </Badge>
-                <div className="text-xl font-bold text-lightest-slate">12</div>
-              </div>
-            </div>
-          </Card>
-        </motion.div>
-      </motion.div>
 
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+        className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
       >
+        <motion.a
+          href="#projects"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault();
+            document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="cursor-target inline-flex items-center bg-neon-blue text-dark-navy font-medium px-8 py-4 rounded-lg transition-all duration-300 hover:bg-neon-blue/90 group"
+        >
+          View Projects
+        </motion.a>
+
         <motion.a
           href="/resume.pdf"
           download="Manyam_Jagadeeswar_Reddy_Resume.pdf"
@@ -281,7 +179,7 @@ const Hero = () => {
   }, [handleMouseMove]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-navy via-light-navy to-dark-navy animate-gradient-shift opacity-90" />
 

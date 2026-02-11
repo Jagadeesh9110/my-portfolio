@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
+import Achievements from '@/components/Achievements';
 import About from '@/components/About';
 import { SkillConstellation } from '@/components/SkillConstellation';
 import { Tools } from '@/components/Tools';
@@ -24,6 +25,10 @@ const Index = () => {
 
       <section id="hero" >
         <Hero />
+      </section>
+
+      <section id="achievements">
+        <Achievements />
       </section>
 
       <section id="about">

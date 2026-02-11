@@ -149,7 +149,7 @@ const Contact = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="font-mono text-neon-blue mr-4">04.</span>
+            <span className="font-mono text-neon-blue mr-4">05.</span>
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-neon-blue mx-auto rounded-full mb-6 sm:mb-8" />

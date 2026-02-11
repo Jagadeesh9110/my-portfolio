@@ -15,7 +15,7 @@ const About = memo(() => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="font-mono text-neon-blue mr-4">01.</span>
+            <span className="font-mono text-neon-blue mr-4">02.</span>
             About Me
           </h2>
           <div className="w-24 h-1 bg-neon-blue mx-auto rounded-full" />
@@ -35,17 +35,20 @@ const About = memo(() => {
               </h3>
               <div className="space-y-4 text-light-slate">
                 <p>
-                  I'm a proactive learner and <span className="font-bold text-lightest-slate">Full Stack Developer</span> skilled in
-                  <span className="text-neon-green"> React.js, Next.js, Node.js, and TypeScript</span>.
+                  I'm a <span className="font-bold text-lightest-slate">Full-Stack Developer</span> focused on building
+                  <span className="text-neon-green"> production-grade systems</span> with clean architecture,
+                  reliable backends, and responsive interfaces.
                 </p>
                 <p>
-                  I have a strong background in <span className="text-neon-green">Systems Engineering</span> and <span className="text-neon-green">Data Structures & Algorithms (DSA)</span>,
-                  having solved <span className="text-neon-blue font-bold">444 LeetCode problems</span> with a contest rating of 1519.
+                  I've built platforms with{' '}
+                  <span className="text-neon-green">JWT/OAuth authentication</span>,{' '}
+                  <span className="text-neon-green">WebSocket-driven dashboards</span>, and{' '}
+                  <span className="text-neon-green">distributed protocol simulators</span> — always
+                  prioritizing correctness, scalability, and clean separation of concerns.
                 </p>
                 <p>
-                  My experience includes building scalable applications featuring
-                  <span className="text-neon-green"> JWT, OAuth, and Real-time Communication</span>.
-                  I am currently seeking an internship to contribute to impactful engineering projects.
+                  Currently seeking <span className="font-bold text-lightest-slate">SDE / Full-Stack internship</span> roles
+                  where I can contribute to real engineering teams and production systems.
                 </p>
               </div>
             </Card>

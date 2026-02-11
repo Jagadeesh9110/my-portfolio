@@ -6,8 +6,8 @@ import { FiMessageSquare, FiX, FiSend } from 'react-icons/fi';
 
 // 1. Moved static data outside
 const quickQuestions = [
-  "What are Jagadeswar's main skills?",
-  'Tell me about his AI projects',
+  "What are Jagadeeswar's main skills?",
+  'Tell me about his projects',
   "What's his educational background?",
   'How can I contact him?',
 ];
@@ -17,15 +17,17 @@ const generateBotResponse = (question: string) => {
   const lowerQuestion = question.toLowerCase();
 
   if (lowerQuestion.includes('skill')) {
-    return "Jagadeswar is skilled in Full Stack Development (React, Node.js), Machine Learning (Python, TensorFlow), Generative AI (LLMs, RAG), and Cloud technologies (AWS, Docker). He specializes in building AI-powered applications!";
-  } else if (lowerQuestion.includes('project')) {
-    return "He has worked on various AI projects including LLM applications, computer vision systems, full-stack web apps, and data science projects. Check out the Projects page for detailed information!";
-  } else if (lowerQuestion.includes('education')) {
-    return "He holds a B.Tech in Data Science from IIIT Dharwad with a minor in Generative AI. He's passionate about continuous learning and stays updated with the latest AI research.";
-  } else if (lowerQuestion.includes('contact')) {
-    return "You can reach out to Jagadeswar through LinkedIn, GitHub, or email. All contact information is available in the contact section below!";
+    return "Jagadeeswar specializes in Full-Stack Development with React, Next.js, Node.js, TypeScript, and MongoDB. He also has experience with real-time systems (WebSockets), secure authentication (JWT, OAuth 2.0), and systems-level engineering including distributed protocol simulation.";
+  } else if (lowerQuestion.includes('project') || lowerQuestion.includes('work')) {
+    return "He's built three notable projects: devOrbit — a multi-user bug intelligence platform with AI-powered triage; an AI Medical Chatbot using Google Gemini API for real-time diagnostic responses; and NetViz Pro — a reliable transport simulator that achieves 100% data integrity under 30% packet loss using custom sliding window ARQ over UDP.";
+  } else if (lowerQuestion.includes('education') || lowerQuestion.includes('study') || lowerQuestion.includes('college')) {
+    return "He's pursuing a B.Tech in Data Science and Artificial Intelligence at IIIT Dharwad (expected 2027) with a GPA of 8.21. His core coursework includes DSA, OOP, DBMS, Operating Systems, and Computer Networks.";
+  } else if (lowerQuestion.includes('contact') || lowerQuestion.includes('reach') || lowerQuestion.includes('email')) {
+    return "You can reach Jagadeeswar via email at manyamjagadeeswar7989@gmail.com, on GitHub (Jagadeesh9110), or LinkedIn (jagadeeswar-reddy-manyam). All links are in the contact section below!";
+  } else if (lowerQuestion.includes('intern') || lowerQuestion.includes('role') || lowerQuestion.includes('hire') || lowerQuestion.includes('position')) {
+    return "Jagadeeswar is actively seeking SDE / Full-Stack internship roles where he can contribute to real engineering teams and production systems. He brings hands-on experience with full-stack platforms, secure auth flows, real-time systems, and distributed protocol engineering.";
   } else {
-    return "That's a great question! Jagadeswar is a Full Stack AI Engineer with expertise in building intelligent applications. Feel free to ask about his skills, projects, or experience, or check out his work on the Projects page!";
+    return "Jagadeeswar is a Full-Stack Developer who builds production-grade systems with clean architecture. Feel free to ask about his skills, projects, education, or how to contact him!";
   }
 };
 
@@ -34,7 +36,7 @@ const AIChatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi! I'm Jagadeswar's AI assistant. Ask me about his skills, projects, or experience!",
+      text: "Hi! I'm Jagadeeswar's AI assistant. Ask me about his skills, projects, or experience!",
       isBot: true,
     },
   ]);
@@ -154,8 +156,8 @@ const AIChatbot = () => {
                     >
                       <div
                         className={`max-w-[80%] p-3 rounded-2xl ${message.isBot
-                            ? 'bg-lightest-navy text-light-slate'
-                            : 'bg-neon-blue text-dark-navy'
+                          ? 'bg-lightest-navy text-light-slate'
+                          : 'bg-neon-blue text-dark-navy'
                           }`}
                       >
                         <p className="text-sm">{message.text}</p>

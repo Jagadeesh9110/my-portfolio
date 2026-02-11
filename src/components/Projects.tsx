@@ -1,51 +1,160 @@
-import React, { useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { FiGithub, FiExternalLink, FiStar } from 'react-icons/fi';
 
-const projectsData = [
+interface ProjectModal {
+  problem: string;
+  architecture: string[];
+  decisions: string[];
+  challenges: string[];
+  capabilities: string[];
+}
 
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  modal: ProjectModal;
+  image: string;
+  technologies: string[];
+  githubUrl: string;
+  liveUrl: string;
+  featured: boolean;
+  category: string;
+}
+
+const projectsData: Project[] = [
   {
     id: 1,
     title: 'devOrbit — AI Bug Intelligence',
-    description: 'Developed and deployed a comprehensive bug intelligence and team collaboration platform using Next.js and MongoDB.',
-    longDescription: 'Developed and deployed a comprehensive bug intelligence and team collaboration platform using Next.js, TypeScript, and MongoDB. Implemented secure authentication with JWT and Social OAuth and constructed core dashboard pages for Teams. Designed intuitive user flows for new and existing users and integrated AI-powered bug analysis using Xenova/Transformers.',
+    description:
+      'Built a multi-user bug intelligence platform enabling role-based collaboration and secure issue tracking. Architected using Next.js, MongoDB, and JWT/OAuth authentication. Integrated AI-based severity classification for automated triage.',
+    modal: {
+      problem:
+        'Engineering teams lack centralized, intelligent workflows for bug tracking. Most tools treat bugs as flat tickets without severity context. devOrbit solves this by combining role-based team collaboration with AI-powered bug analysis to automate triage and prioritization.',
+      architecture: [
+        'Frontend: Next.js with TypeScript and TailwindCSS',
+        'Backend: Next.js API routes with server-side logic',
+        'Database: MongoDB with Mongoose ODM',
+        'Auth: JWT tokens + Social OAuth (Google, GitHub)',
+        'AI: Xenova/Transformers for on-device severity classification',
+        'Deployment: Vercel (frontend + API)',
+      ],
+      decisions: [
+        'JWT over sessions — enables stateless authentication across serverless API routes, reducing cold-start complexity on Vercel',
+        'OAuth 2.0 — lowers friction for developer sign-up using existing GitHub/Google accounts',
+        'MongoDB — flexible document schema adapts to evolving bug metadata without migrations',
+        'On-device AI (Xenova) — avoids external API latency and costs for severity inference while keeping data private',
+      ],
+      challenges: [
+        'Token refresh flow across page navigations without interrupting user state',
+        'Role-based access control enforcement at both API middleware and UI component level',
+        'AI model cold-start latency on first classification request',
+        'Concurrent team member updates on the same bug without state conflicts',
+      ],
+      capabilities: [
+        'Multi-tenant team workspaces with configurable roles',
+        'Stateless JWT authentication with refresh token rotation',
+        'AI-powered bug severity classification (zero external API calls)',
+        'Real-time dashboard with team activity metrics',
+      ],
+    },
     image: '/placeholder.svg',
     technologies: ['Next.js', 'TypeScript', 'MongoDB', 'TailwindCSS', 'JWT', 'OAuth'],
     githubUrl: 'https://github.com/Jagadeesh9110/devOrbit',
     liveUrl: 'https://dev-orbit-rust.vercel.app/',
     featured: true,
-    lighthouseScore: 95,
-    category: 'Full Stack'
+    category: 'Full Stack',
   },
   {
     id: 2,
     title: 'AI-Powered Medical Chatbot',
-    description: 'Engineered a full-stack real-time chat application using React.js, Node.js, Express.js, and MongoDB with Gemini API.',
-    longDescription: 'Engineered a full-stack real-time chat application using React.js, Node.js, Express.js, and MongoDB. Integrated the Google Gemini API for high-accuracy production inference, while prototyping a custom-trained medical model for domain-specific fine-tuning. Developed a secure backend with JWT authentication and optimized frontend state for zero-latency data streams.',
+    description:
+      'Engineered a real-time medical chat system connecting users with AI-powered diagnostic responses. Built on React.js frontend and Node.js/Express backend with MongoDB persistence. Integrated Google Gemini API for production inference with JWT-secured endpoints.',
+    modal: {
+      problem:
+        'Medical Q&A systems require low-latency, contextually accurate responses while maintaining conversation history and user privacy. This system provides real-time AI-powered medical consultation with persistent chat history and secure authentication.',
+      architecture: [
+        'Frontend: React.js with optimized state management',
+        'Backend: Node.js + Express.js REST API',
+        'Database: MongoDB for conversation persistence',
+        'AI: Google Gemini API for production inference',
+        'Auth: JWT-based session management',
+        'Protocol: WebSocket-ready architecture for streaming responses',
+      ],
+      decisions: [
+        'Gemini API over custom model — production-grade accuracy without training infrastructure; custom model prototyped for future domain-specific fine-tuning',
+        'MongoDB — natural fit for chat history: each conversation is a document with nested message arrays',
+        'JWT auth — ensures stateless API security; tokens carry user context without server-side session storage',
+        'Express.js — lightweight middleware stack for clean request validation and error handling',
+      ],
+      challenges: [
+        'Managing streaming AI responses without blocking the event loop',
+        'Token expiration handling mid-conversation without losing chat context',
+        'Rate limiting API calls to Gemini while maintaining responsive UX',
+        'Sanitizing medical responses to avoid dangerous advice pass-through',
+      ],
+      capabilities: [
+        'Real-time AI-powered medical consultation',
+        'Persistent conversation history per user',
+        'Stateless JWT authentication',
+        'Configurable AI model switching (Gemini production / custom prototype)',
+      ],
+    },
     image: '/placeholder.svg',
     technologies: ['React.js', 'Node.js', 'WebSockets', 'MongoDB', 'Express.js', 'Gemini API'],
     githubUrl: 'https://github.com/Jagadeesh9110/React-App-LLM',
     liveUrl: 'https://github.com/Jagadeesh9110/React-App-LLM',
-    featured: true,
-    lighthouseScore: 92,
-    category: 'AI/ML'
+    featured: false,
+    category: 'AI/ML',
   },
   {
     id: 3,
     title: 'NetViz Pro — Reliable Transport Simulator',
-    description: 'Engineered a custom Reliable UDP Protocol handling binary file transfers, sliding window ARQ, and congestion control.',
-    longDescription: 'Engineered a custom Reliable UDP Protocol handling binary file transfers, sliding window ARQ, and congestion control, simulating TCP reliability mechanics at the byte level. Architected a distributed system where a Java Core engine streams real-time packet telemetry to a React Dashboard via a custom Node.js/WebSocket bridge. Implemented Fault Tolerance (Retransmission Timers, Cumulative ACKs) guaranteeing 100% data integrity during simulated 30% packet loss conditions.',
+    description:
+      'Simulated TCP-reliable transport over UDP with sliding window ARQ, congestion control, and binary file segmentation. Architected a distributed system: Java core engine streaming packet telemetry via Node.js/WebSocket bridge to a React dashboard. Achieved 100% data integrity under 30% simulated packet loss.',
+    modal: {
+      problem:
+        'Understanding reliable transport protocols requires more than theory — it demands hands-on simulation of packet loss, retransmission, and flow control. NetViz Pro provides a visual, interactive environment to observe TCP reliability mechanics operating at the byte level over an unreliable UDP channel.',
+      architecture: [
+        'Core Engine: Java — handles UDP socket programming, sliding window management, and binary segmentation',
+        'Bridge: Node.js — translates Java engine telemetry into WebSocket streams for the dashboard',
+        'Frontend: React — renders real-time packet flow visualization, window states, and throughput metrics',
+        'Protocol: Custom Reliable UDP with configurable loss simulation',
+        'Transport: WebSocket bridge between Java and browser',
+      ],
+      decisions: [
+        'Java for core engine — direct access to low-level UDP sockets and byte-level buffer manipulation; essential for accurate protocol simulation',
+        'Node.js WebSocket bridge — decouples the Java engine from the browser; enables real-time telemetry streaming without modifying the core protocol logic',
+        'Hybrid Sliding Window ARQ — combines Go-Back-N efficiency with selective repeat for better throughput under high loss conditions',
+        'Cumulative ACKs — reduces ACK traffic overhead while still enabling the sender to detect gaps and trigger retransmissions',
+        'UDP over TCP — intentionally unreliable base layer forces the custom protocol to handle all reliability guarantees',
+      ],
+      challenges: [
+        'Maintaining binary segmentation integrity across packet boundaries during file transfer',
+        'Packet loss recovery without corrupting sliding window state',
+        'Synchronizing real-time telemetry between Java process and WebSocket bridge under high-throughput conditions',
+        'Congestion window adjustment when loss rate fluctuates dynamically',
+        'Timer-based retransmission without creating duplicate delivery cascades',
+      ],
+      capabilities: [
+        'Configurable packet loss simulation (0–50%)',
+        'Binary-safe file transfer with integrity verification',
+        '100% data integrity under 30% simulated packet loss',
+        'Real-time sliding window state visualization',
+        'Throughput and retransmission metrics dashboard',
+      ],
+    },
     image: '/placeholder.svg',
     technologies: ['Java', 'Node.js', 'React', 'UDP', 'WebSockets'],
     githubUrl: 'https://github.com/Jagadeesh9110/NetViz',
     liveUrl: 'https://github.com/Jagadeesh9110/NetViz',
-    featured: true,
-    lighthouseScore: 98,
-    category: 'Systems Engineering'
+    featured: false,
+    category: 'Systems Engineering',
   },
 ];
 
@@ -65,8 +174,6 @@ const itemVariants = {
     transition: { duration: 0.6 },
   },
 };
-
-type Project = typeof projectsData[0];
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -90,7 +197,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="min-h-screen bg-dark-navy">
-      {/* Hero Section */}
+      {/* Section Header */}
       <div className="pt-20 pb-20 bg-gradient-to-b from-dark-navy to-light-navy">
         <div className="max-w-6xl mx-auto section-padding">
           <motion.div
@@ -100,12 +207,11 @@ const Projects = () => {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="font-mono text-neon-blue mr-4">03.</span>
+              <span className="font-mono text-neon-blue mr-4">04.</span>
               My Projects
             </h1>
             <p className="text-xl text-light-slate max-w-3xl mx-auto">
-              A collection of projects that showcase my skills in full-stack development,
-              artificial intelligence, and modern web technologies.
+              Systems I've designed and shipped — full-stack platforms, AI integrations, and protocol-level engineering.
             </p>
           </motion.div>
         </div>
@@ -196,7 +302,7 @@ const Projects = () => {
                       </p>
 
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 3).map((tech) => (
+                        {project.technologies.map((tech) => (
                           <Badge
                             key={tech}
                             variant="secondary"
@@ -205,16 +311,6 @@ const Projects = () => {
                             {tech}
                           </Badge>
                         ))}
-                        {project.technologies.length > 3 && (
-                          <Badge variant="secondary" className="text-xs bg-lightest-navy/50 text-light-slate">
-                            +{project.technologies.length - 3}
-                          </Badge>
-                        )}
-                      </div>
-
-                      <div className="flex items-center justify-between text-xs text-slate mb-4">
-                        <span>Lighthouse Score</span>
-                        <span className="text-neon-green font-medium">{project.lighthouseScore}/100</span>
                       </div>
 
                       {/* Animated Text Container */}
@@ -225,12 +321,12 @@ const Projects = () => {
                           }}
                           transition={{ duration: 0.3, ease: "easeInOut" }}
                         >
-                          {/* Default State - Web Development */}
+                          {/* Default State */}
                           <div className="h-6 flex items-center text-sm text-light-slate">
-                            Web Development
+                            {project.category}
                           </div>
 
-                          {/* Hover State - Show project with line */}
+                          {/* Hover State */}
                           <div className="h-6 flex items-center gap-2 text-sm text-neon-blue mt-0">
                             Show project
                             <span className="w-8 h-px bg-neon-blue"></span>
@@ -282,47 +378,79 @@ const Projects = () => {
                 </Button>
               </div>
 
-              <p className="text-light-slate text-lg leading-relaxed">
-                {selectedProject.longDescription}
-              </p>
+              {/* Problem */}
+              <div>
+                <h3 className="text-xl font-semibold text-neon-blue mb-3">Problem</h3>
+                <p className="text-light-slate leading-relaxed">
+                  {selectedProject.modal.problem}
+                </p>
+              </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold text-neon-blue mb-4">Technologies Used</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech: string) => (
-                      <Badge
-                        key={tech}
-                        variant="secondary"
-                        className="bg-lightest-navy/50 text-light-slate border border-neon-blue/20"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
+              {/* Architecture */}
+              <div>
+                <h3 className="text-xl font-semibold text-neon-blue mb-3">Architecture</h3>
+                <ul className="space-y-2">
+                  {selectedProject.modal.architecture.map((item, i) => (
+                    <li key={i} className="flex items-start text-light-slate">
+                      <div className="w-2 h-2 bg-neon-green rounded-full mr-3 mt-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                <div>
-                  <h3 className="text-xl font-semibold text-neon-blue mb-4">Performance</h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-light-slate">Lighthouse Score</span>
-                      <span className="text-neon-green font-semibold">{selectedProject.lighthouseScore}/100</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-light-slate">Category</span>
-                      <span className="text-light-slate">{selectedProject.category}</span>
-                    </div>
-                    {selectedProject.featured && (
-                      <div className="flex justify-between items-center">
-                        <span className="text-light-slate">Status</span>
-                        <Badge className="bg-neon-green text-dark-navy">
-                          <FiStar className="w-3 h-3 mr-1" />
-                          Featured
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
+              {/* Engineering Decisions */}
+              <div>
+                <h3 className="text-xl font-semibold text-neon-blue mb-3">Engineering Decisions</h3>
+                <ul className="space-y-2">
+                  {selectedProject.modal.decisions.map((item, i) => (
+                    <li key={i} className="flex items-start text-light-slate">
+                      <div className="w-2 h-2 bg-neon-blue rounded-full mr-3 mt-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Challenges & Edge Cases */}
+              <div>
+                <h3 className="text-xl font-semibold text-neon-blue mb-3">Challenges & Edge Cases</h3>
+                <ul className="space-y-2">
+                  {selectedProject.modal.challenges.map((item, i) => (
+                    <li key={i} className="flex items-start text-light-slate">
+                      <div className="w-2 h-2 bg-neon-green rounded-full mr-3 mt-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* System Capabilities */}
+              <div>
+                <h3 className="text-xl font-semibold text-neon-blue mb-3">System Capabilities</h3>
+                <ul className="space-y-2">
+                  {selectedProject.modal.capabilities.map((item, i) => (
+                    <li key={i} className="flex items-start text-light-slate">
+                      <div className="w-2 h-2 bg-neon-blue rounded-full mr-3 mt-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Technologies */}
+              <div>
+                <h3 className="text-xl font-semibold text-neon-blue mb-4">Technologies</h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.technologies.map((tech: string) => (
+                    <Badge
+                      key={tech}
+                      variant="secondary"
+                      className="bg-lightest-navy/50 text-light-slate border border-neon-blue/20"
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
                 </div>
               </div>
             </div>
