@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi';
-import { useTheme } from 'next-themes';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const navItems = [
   { name: 'Home', id: 'hero' },
@@ -75,11 +74,11 @@ const Navigation = () => {
         }`}
     >
       <div className="max-w-7xl mx-auto section-padding">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-end md:justify-center h-16 lg:h-20">
 
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 pointer-events-auto">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -89,7 +88,7 @@ const Navigation = () => {
               >
                 <button
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${activeSection === item.id
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 cursor-target ${activeSection === item.id
                     ? 'text-neon-blue'
                     : 'text-light-slate hover:text-neon-blue'
                     }`}
@@ -132,12 +131,12 @@ const Navigation = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden pointer-events-auto">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleMobileMenu}
-              className="text-light-slate"
+              className="text-light-slate cursor-target"
             >
               <motion.div
                 animate={{ rotate: isOpen ? 90 : 0 }}
@@ -162,7 +161,7 @@ const Navigation = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-dark-navy/98 backdrop-blur-md border-t border-white/10"
+            className="md:hidden bg-dark-navy/98 backdrop-blur-md border-t border-white/10 pointer-events-auto"
           >
             <div className="section-padding py-6 space-y-4">
               {navItems.map((item, index) => (
@@ -174,7 +173,7 @@ const Navigation = () => {
                 >
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`block w-full text-left px-4 py-3 text-lg font-medium rounded-lg transition-all duration-200 ${activeSection === item.id
+                    className={`block w-full text-left px-4 py-3 text-lg font-medium rounded-lg transition-all duration-200 cursor-target ${activeSection === item.id
                       ? 'text-neon-blue bg-neon-blue/10'
                       : 'text-light-slate hover:text-neon-blue hover:bg-white/5'
                       }`}
