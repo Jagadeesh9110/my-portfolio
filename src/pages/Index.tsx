@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import Achievements from '@/components/Achievements';
-import About from '@/components/About';
-import { SkillConstellation } from '@/components/SkillConstellation';
-import { Tools } from '@/components/Tools';
-import Projects from '@/components/Projects';
-import Contact from '@/components/Contact';
-import AIChatbot from '@/components/AIChatbot';
 import TargetCursor from "@/components/TargetCursor";
 
+// Lazy load components for performance
+const Achievements = lazy(() => import('@/components/Achievements'));
+const About = lazy(() => import('@/components/About'));
+// Handle named exports
+const SkillConstellation = lazy(() => import('@/components/SkillConstellation').then(module => ({ default: module.SkillConstellation })));
+const Tools = lazy(() => import('@/components/Tools').then(module => ({ default: module.Tools })));
+const Projects = lazy(() => import('@/components/Projects'));
+const Contact = lazy(() => import('@/components/Contact'));
+const AIChatbot = lazy(() => import('@/components/AIChatbot'));
+
+const LoadingFallback = () => <div className="min-h-[50vh] flex items-center justify-center text-neon-blue">Loading...</div>;
 
 const Index = () => {
   return (
@@ -28,26 +32,42 @@ const Index = () => {
       </section>
 
       <section id="achievements">
-        <Achievements />
+        <Suspense fallback={<div className="h-40" />}>
+          <Achievements />
+        </Suspense>
       </section>
 
       <section id="about">
-        <About />
+        <Suspense fallback={<LoadingFallback />}>
+          <About />
+        </Suspense>
       </section>
 
       <section id="skills">
-        <SkillConstellation />
+        <Suspense fallback={<LoadingFallback />}>
+          <SkillConstellation />
+        </Suspense>
       </section>
 
-      <Tools />
+      <Suspense fallback={<LoadingFallback />}>
+        <Tools />
+      </Suspense>
 
-      <Projects />
+      <section id="projects">
+        <Suspense fallback={<LoadingFallback />}>
+          <Projects />
+        </Suspense>
+      </section>
 
       <section id="contact">
-        <Contact />
+        <Suspense fallback={<LoadingFallback />}>
+          <Contact />
+        </Suspense>
       </section>
 
-      <AIChatbot />
+      <Suspense fallback={null}>
+        <AIChatbot />
+      </Suspense>
     </div>
   );
 }

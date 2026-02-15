@@ -76,17 +76,7 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto section-padding">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => scrollToSection('hero')}
-            className="cursor-pointer"
-          >
-            <span className="text-xl lg:text-2xl font-bold text-gradient font-mono">
-              MJR
-            </span>
-          </motion.div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

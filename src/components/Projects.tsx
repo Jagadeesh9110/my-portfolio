@@ -196,7 +196,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="min-h-screen bg-dark-navy">
+    <section className="min-h-screen bg-dark-navy">
       {/* Section Header */}
       <div className="pt-20 pb-20 bg-gradient-to-b from-dark-navy to-light-navy">
         <div className="max-w-6xl mx-auto section-padding">
