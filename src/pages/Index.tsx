@@ -6,11 +6,13 @@ import TargetCursor from "@/components/TargetCursor";
 // Lazy load components for performance
 const Achievements = lazy(() => import('@/components/Achievements'));
 const About = lazy(() => import('@/components/About'));
+const Experience = lazy(() => import('@/components/Experience'));
 // Handle named exports
 const SkillConstellation = lazy(() => import('@/components/SkillConstellation').then(module => ({ default: module.SkillConstellation })));
 const Tools = lazy(() => import('@/components/Tools').then(module => ({ default: module.Tools })));
 const Projects = lazy(() => import('@/components/Projects'));
 const Contact = lazy(() => import('@/components/Contact'));
+const Footer = lazy(() => import('@/components/Footer'));
 const AIChatbot = lazy(() => import('@/components/AIChatbot'));
 
 const LoadingFallback = () => <div className="min-h-[50vh] flex items-center justify-center text-neon-blue">Loading...</div>;
@@ -43,6 +45,12 @@ const Index = () => {
         </Suspense>
       </section>
 
+      <section id="experience">
+        <Suspense fallback={<LoadingFallback />}>
+          <Experience />
+        </Suspense>
+      </section>
+
       <section id="skills">
         <Suspense fallback={<LoadingFallback />}>
           <SkillConstellation />
@@ -64,6 +72,10 @@ const Index = () => {
           <Contact />
         </Suspense>
       </section>
+
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
 
       <Suspense fallback={null}>
         <AIChatbot />

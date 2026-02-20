@@ -5,9 +5,6 @@ import {
     SiGit,
     SiGithub,
     SiVsco,
-    SiVercel,
-    SiRender,
-    SiGithubactions,
     SiPostman,
 } from 'react-icons/si';
 
@@ -15,10 +12,7 @@ const tools = [
     { name: 'VS Code', icon: SiVsco, color: '#007ACC' },
     { name: 'Git', icon: SiGit, color: '#F05032' },
     { name: 'GitHub', icon: SiGithub, color: '#E8E8E8' },
-    { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088FF' },
     { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
-    { name: 'Vercel', icon: SiVercel, color: '#E8E8E8' },
-    { name: 'Render', icon: SiRender, color: '#46E3B7' },
 ];
 
 const staggerContainerVariants: Variants = {
@@ -66,16 +60,16 @@ export const Tools = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
-                    className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6"
+                    className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto"
                 >
                     {tools.map((tool) => (
                         <motion.div key={tool.name} variants={toolItemVariants}>
-                            <Card className="glass-effect hover-glow p-6 flex flex-col items-center justify-center aspect-square transition-all duration-300 group">
+                            <Card className="glass-effect hover-glow p-4 flex flex-col items-center justify-center transition-all duration-300 group">
                                 <tool.icon
-                                    className="w-12 h-12 mb-3 text-light-slate group-hover:scale-110 transition-transform duration-300"
+                                    className="w-8 h-8 mb-2 text-light-slate group-hover:scale-110 transition-transform duration-300"
                                     style={{ color: tool.color }}
                                 />
-                                <p className="text-sm font-medium text-light-slate group-hover:text-lightest-slate transition-colors">
+                                <p className="text-xs font-medium text-light-slate group-hover:text-lightest-slate transition-colors">
                                     {tool.name}
                                 </p>
                             </Card>

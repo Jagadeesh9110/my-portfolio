@@ -17,7 +17,7 @@ const generateBotResponse = (question: string) => {
   const lowerQuestion = question.toLowerCase();
 
   if (lowerQuestion.includes('skill')) {
-    return "Jagadeeswar specializes in Full-Stack Development with React, Next.js, Node.js, TypeScript, and MongoDB. He also has experience with real-time systems (WebSockets), secure authentication (JWT, OAuth 2.0), and systems-level engineering including distributed protocol simulation.";
+    return "Jagadeeswar's core stack includes Next.js, Node.js, TypeScript, MongoDB, Socket.IO, and JWT. On the backend side, he works with Express.js, REST APIs, OAuth 2.0, and RBAC. For databases, he uses MongoDB, PostgreSQL, and Mongoose. His infrastructure stack includes AWS EC2, Vercel, Render, and PM2.";
   } else if (lowerQuestion.includes('project') || lowerQuestion.includes('work')) {
     return "He's built three notable projects: devOrbit — a multi-user bug intelligence platform with AI-powered triage; an AI Medical Chatbot using Google Gemini API for real-time diagnostic responses; and NetViz Pro — a reliable transport simulator that achieves 100% data integrity under 30% packet loss using custom sliding window ARQ over UDP.";
   } else if (lowerQuestion.includes('education') || lowerQuestion.includes('study') || lowerQuestion.includes('college')) {

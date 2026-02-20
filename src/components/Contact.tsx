@@ -1,108 +1,7 @@
-import React, { useRef, useState, memo } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { FiMail, FiGithub, FiLinkedin, FiSend } from 'react-icons/fi';
-
-const socialLinks = [
-  {
-    name: 'Email',
-    icon: FiMail,
-    href: 'mailto:manyamjagadeeswar7989@gmail.com',
-    color: 'text-red-400',
-    handle: 'manyamjagadeeswar7989@gmail.com', // Long email, will test break-all
-  },
-  {
-    name: 'GitHub',
-    icon: FiGithub,
-    href: 'https://github.com/Jagadeesh9110',
-    color: 'text-gray-400',
-    handle: 'github.com/Jagadeesh9110',
-  },
-  {
-    name: 'LinkedIn',
-    icon: FiLinkedin,
-    href: 'https://linkedin.com/in/jagadeeswar-reddy-manyam',
-    color: 'text-blue-400',
-    handle: 'linkedin.com/in/jagadeeswar-reddy-manyam',
-  },
-];
-
-
-const MemoizedContactInfo = memo(() => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      className="space-y-8"
-    >
-      <Card className="glass-effect p-6 sm:p-8 hover-glow">
-        <h3 className="text-2xl font-bold text-neon-blue mb-6">
-          Let's Connect
-        </h3>
-        <p className="text-light-slate mb-8 text-sm sm:text-base">
-          Prefer email or LinkedIn? You can reach me directly here. I'm open to SDE internships, junior backend/full‑stack roles, and collaborations on serious, long‑term projects.
-        </p>
-
-        <div className="space-y-4 sm:space-y-6">
-          {socialLinks.map((social, index) => (
-            <motion.a
-              key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 rounded-lg bg-lightest-navy/30 hover:bg-lightest-navy/50 transition-all duration-300 group" // Adjusted padding & space-x
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 + index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div
-                className={`p-2 sm:p-3 rounded-lg bg-lightest-navy/50 ${social.color} group-hover:scale-110 transition-transform duration-300 flex-shrink-0`} // Added flex-shrink-0
-              >
-                <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div className="flex flex-col flex-grow min-w-0">
-                <p className="font-medium text-lightest-slate group-hover:text-neon-blue transition-colors text-sm sm:text-base"> {/* Adjusted font size */}
-                  {social.name}
-                </p>
-                <p className="text-xs sm:text-sm text-slate break-all">
-                  {social.handle}
-                </p>
-              </div>
-            </motion.a>
-          ))}
-        </div>
-      </Card>
-      <Card className="glass-effect p-6 sm:p-8 hover-glow">
-        <h4 className="text-lg font-semibold text-neon-green mb-4">
-          Quick Info
-        </h4>
-        <div className="space-y-2 sm:space-y-3 text-light-slate text-sm sm:text-base">
-          <div className="flex justify-between">
-            <span>Location:</span>
-            <span className="text-lightest-slate">India</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Response Time:</span>
-            <span className="text-lightest-slate">24-48 hours</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Availability:</span>
-            <span className="text-neon-green">Open to work</span>
-          </div>
-        </div>
-      </Card>
-    </motion.div>
-  );
-});
+import { FiMail, FiGithub, FiLinkedin, FiSend, FiPhone } from 'react-icons/fi';
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -134,127 +33,164 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-16 sm:py-20 bg-light-navy relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full opacity-10">
-        <div className="absolute top-10 left-5 w-24 h-24 sm:w-32 sm:h-32 border border-neon-blue rounded-full" />
-        <div className="absolute bottom-10 right-5 w-16 h-16 sm:w-24 sm:h-24 bg-neon-green/20 rounded-full" />
+    <section className="py-20 bg-dark-navy relative overflow-hidden">
+      {/* Background accents */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+        <div className="absolute top-10 left-10 w-32 h-32 border border-neon-blue rounded-full" />
+        <div className="absolute bottom-10 right-10 w-24 h-24 bg-neon-green/20 rounded-full" />
       </div>
 
-      <div className="max-w-xl sm:max-w-4xl mx-auto section-padding relative z-10"> {/*  max-w */}
+      <div className="max-w-6xl mx-auto section-padding relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-16"
+          className="mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="font-mono text-neon-blue mr-4">05.</span>
-            Get In Touch
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">
+            Contact <span className="text-neon-blue">Me</span>
           </h2>
-          <div className="w-24 h-1 bg-neon-blue mx-auto rounded-full mb-6 sm:mb-8" />
-          <p className="text-base sm:text-lg text-light-slate max-w-xl mx-auto">
-            <span className="block mb-2">
-              Let's ship something real.
-            </span>
-            <span>
-              If you're hiring for a full-stack or backend‑leaning role, or you're building a product that needs someone who can own features end‑to‑end, I'd love to hear from you. I'm especially interested in SDE internships, junior roles, and impactful side projects.
-            </span>
-          </p>
-
+          <div className="w-16 h-1 bg-neon-blue rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
-          {/* Contact Form */}
+        {/* Two-Column Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* LEFT COLUMN — Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
           >
-            <Card className="glass-effect p-6 sm:p-8 hover-glow">
-              <h3 className="text-2xl font-bold text-neon-blue mb-6">
-                Send a Message
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold text-lightest-slate mb-4">
+                Let's Work Together
               </h3>
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <motion.div
+              <p className="text-light-slate leading-relaxed text-sm md:text-base">
+                I'm open to SDE internships, junior full-stack / backend roles, and
+                collaborations on serious, long-term projects. If you're building
+                something real and need someone who can own features end-to-end,
+                let's connect.
+              </p>
+            </div>
 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
+            {/* Direct Contact Info */}
+            <div className="space-y-4">
+              <a
+                href="mailto:manyamjagadeeswar7989@gmail.com"
+                className="flex items-center gap-3 text-light-slate hover:text-neon-blue transition-colors group"
+              >
+                <div className="p-2 rounded-lg bg-lightest-navy/30 text-neon-blue group-hover:bg-neon-blue/10 transition-colors">
+                  <FiMail className="w-5 h-5" />
+                </div>
+                <span className="text-sm md:text-base break-all">manyamjagadeeswar7989@gmail.com</span>
+              </a>
+
+              <a
+                href="tel:+917989461178"
+                className="flex items-center gap-3 text-light-slate hover:text-neon-blue transition-colors group"
+              >
+                <div className="p-2 rounded-lg bg-lightest-navy/30 text-neon-blue group-hover:bg-neon-blue/10 transition-colors">
+                  <FiPhone className="w-5 h-5" />
+                </div>
+                <span className="text-sm md:text-base">+91 9110385587</span>
+              </a>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-4 pt-2">
+              {[
+                { icon: FiGithub, href: 'https://github.com/Jagadeesh9110', label: 'GitHub' },
+                { icon: FiLinkedin, href: 'https://linkedin.com/in/jagadeeswar-reddy-manyam', label: 'LinkedIn' },
+                { icon: FiMail, href: 'mailto:manyamjagadeeswar7989@gmail.com', label: 'Email' },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-target p-3 rounded-full border border-neon-blue/30 text-neon-blue hover:bg-neon-blue hover:text-dark-navy transition-all duration-300"
+                  aria-label={social.label}
                 >
-                  <Input
-                    name="user_name"
-                    placeholder="Your Name"
-                    required
-                    className="bg-lightest-navy/50 border-white/20 text-lightest-slate placeholder-slate focus:border-neon-blue"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <Input
-                    name="user_email"
-                    type="email"
-                    placeholder="Your Email"
-                    required
-                    className="bg-lightest-navy/50 border-white/20 text-lightest-slate placeholder-slate focus:border-neon-blue"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <Textarea
-                    name="message"
-                    placeholder="Tell me about the role, project, or question..."
-                    required
-                    rows={6}
-                    className="bg-lightest-navy/50 border-white/20 text-lightest-slate placeholder-slate focus:border-neon-blue resize-none"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 }}
-                >
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="cursor-target w-full bg-neon-blue hover:bg-neon-blue/90 text-dark-navy font-medium py-3 transition-all duration-300 group"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            ease: 'linear',
-                          }}
-                          className="w-5 h-5 border-2 border-dark-navy border-t-transparent rounded-full mr-2"
-                        />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <FiSend className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                        Let's talk
-                      </>
-                    )}
-                  </Button>
-                </motion.div>
-              </form>
-            </Card>
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
           </motion.div>
-          <MemoizedContactInfo />
+
+          {/* RIGHT COLUMN — Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <input
+                  name="user_name"
+                  placeholder="Enter Your Name"
+                  required
+                  className="w-full px-4 py-3 bg-lightest-navy/30 border border-white/10 rounded-md text-lightest-slate placeholder-slate/60 focus:outline-none focus:border-neon-blue transition-colors text-sm md:text-base"
+                />
+              </div>
+              <div>
+                <input
+                  name="user_email"
+                  type="email"
+                  placeholder="Enter Your Email"
+                  required
+                  className="w-full px-4 py-3 bg-lightest-navy/30 border border-white/10 rounded-md text-lightest-slate placeholder-slate/60 focus:outline-none focus:border-neon-blue transition-colors text-sm md:text-base"
+                />
+              </div>
+              <div>
+                <input
+                  name="subject"
+                  placeholder="Enter Your Subject"
+                  className="w-full px-4 py-3 bg-lightest-navy/30 border border-white/10 rounded-md text-lightest-slate placeholder-slate/60 focus:outline-none focus:border-neon-blue transition-colors text-sm md:text-base"
+                />
+              </div>
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Enter Your Message"
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 bg-lightest-navy/30 border border-white/10 rounded-md text-lightest-slate placeholder-slate/60 focus:outline-none focus:border-neon-blue transition-colors resize-none text-sm md:text-base"
+                />
+              </div>
+
+              {/* Submit Button with neon glow */}
+              <div className="relative">
+                {/* Glow effect behind button */}
+                <div className="absolute -inset-1 bg-neon-blue/40 rounded-lg blur-md opacity-70" />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="cursor-target relative w-full bg-dark-navy border border-neon-blue/20 text-lightest-slate font-medium py-3 rounded-lg transition-all duration-300 hover:bg-neon-blue/10 disabled:opacity-50 flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                        className="w-5 h-5 border-2 border-lightest-slate border-t-transparent rounded-full"
+                      />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <FiSend className="w-4 h-4" />
+                      Submit
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>

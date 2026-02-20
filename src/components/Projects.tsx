@@ -30,90 +30,6 @@ interface Project {
 const projectsData: Project[] = [
   {
     id: 1,
-    title: 'devOrbit — AI Bug Intelligence',
-    description:
-      'Built a multi-user bug intelligence platform enabling role-based collaboration and secure issue tracking. Architected using Next.js, MongoDB, and JWT/OAuth authentication. Integrated AI-based severity classification for automated triage.',
-    modal: {
-      problem:
-        'Engineering teams lack centralized, intelligent workflows for bug tracking. Most tools treat bugs as flat tickets without severity context. devOrbit solves this by combining role-based team collaboration with AI-powered bug analysis to automate triage and prioritization.',
-      architecture: [
-        'Frontend: Next.js with TypeScript and TailwindCSS',
-        'Backend: Next.js API routes with server-side logic',
-        'Database: MongoDB with Mongoose ODM',
-        'Auth: JWT tokens + Social OAuth (Google, GitHub)',
-        'AI: Xenova/Transformers for on-device severity classification',
-        'Deployment: Vercel (frontend + API)',
-      ],
-      decisions: [
-        'JWT over sessions — enables stateless authentication across serverless API routes, reducing cold-start complexity on Vercel',
-        'OAuth 2.0 — lowers friction for developer sign-up using existing GitHub/Google accounts',
-        'MongoDB — flexible document schema adapts to evolving bug metadata without migrations',
-        'On-device AI (Xenova) — avoids external API latency and costs for severity inference while keeping data private',
-      ],
-      challenges: [
-        'Token refresh flow across page navigations without interrupting user state',
-        'Role-based access control enforcement at both API middleware and UI component level',
-        'AI model cold-start latency on first classification request',
-        'Concurrent team member updates on the same bug without state conflicts',
-      ],
-      capabilities: [
-        'Multi-tenant team workspaces with configurable roles',
-        'Stateless JWT authentication with refresh token rotation',
-        'AI-powered bug severity classification (zero external API calls)',
-        'Real-time dashboard with team activity metrics',
-      ],
-    },
-    image: '/placeholder.svg',
-    technologies: ['Next.js', 'TypeScript', 'MongoDB', 'TailwindCSS', 'JWT', 'OAuth'],
-    githubUrl: 'https://github.com/Jagadeesh9110/devOrbit',
-    liveUrl: 'https://dev-orbit-rust.vercel.app/',
-    featured: true,
-    category: 'Full Stack',
-  },
-  {
-    id: 2,
-    title: 'AI-Powered Medical Chatbot',
-    description:
-      'Engineered a real-time medical chat system connecting users with AI-powered diagnostic responses. Built on React.js frontend and Node.js/Express backend with MongoDB persistence. Integrated Google Gemini API for production inference with JWT-secured endpoints.',
-    modal: {
-      problem:
-        'Medical Q&A systems require low-latency, contextually accurate responses while maintaining conversation history and user privacy. This system provides real-time AI-powered medical consultation with persistent chat history and secure authentication.',
-      architecture: [
-        'Frontend: React.js with optimized state management',
-        'Backend: Node.js + Express.js REST API',
-        'Database: MongoDB for conversation persistence',
-        'AI: Google Gemini API for production inference',
-        'Auth: JWT-based session management',
-        'Protocol: WebSocket-ready architecture for streaming responses',
-      ],
-      decisions: [
-        'Gemini API over custom model — production-grade accuracy without training infrastructure; custom model prototyped for future domain-specific fine-tuning',
-        'MongoDB — natural fit for chat history: each conversation is a document with nested message arrays',
-        'JWT auth — ensures stateless API security; tokens carry user context without server-side session storage',
-        'Express.js — lightweight middleware stack for clean request validation and error handling',
-      ],
-      challenges: [
-        'Managing streaming AI responses without blocking the event loop',
-        'Token expiration handling mid-conversation without losing chat context',
-        'Rate limiting API calls to Gemini while maintaining responsive UX',
-        'Sanitizing medical responses to avoid dangerous advice pass-through',
-      ],
-      capabilities: [
-        'Real-time AI-powered medical consultation',
-        'Persistent conversation history per user',
-        'Stateless JWT authentication',
-        'Configurable AI model switching (Gemini production / custom prototype)',
-      ],
-    },
-    image: '/placeholder.svg',
-    technologies: ['React.js', 'Node.js', 'WebSockets', 'MongoDB', 'Express.js', 'Gemini API'],
-    githubUrl: 'https://github.com/Jagadeesh9110/React-App-LLM',
-    liveUrl: 'https://github.com/Jagadeesh9110/React-App-LLM',
-    featured: false,
-    category: 'AI/ML',
-  },
-  {
-    id: 3,
     title: 'NetViz Pro — Reliable Transport Simulator',
     description:
       'Simulated TCP-reliable transport over UDP with sliding window ARQ, congestion control, and binary file segmentation. Architected a distributed system: Java core engine streaming packet telemetry via Node.js/WebSocket bridge to a React dashboard. Achieved 100% data integrity under 30% simulated packet loss.',
@@ -156,6 +72,91 @@ const projectsData: Project[] = [
     featured: false,
     category: 'Systems Engineering',
   },
+  {
+    id: 2,
+    title: 'devOrbit — AI Bug Intelligence',
+    description:
+      'Designed and engineered a multi-user bug intelligence platform with role-based collaboration, secure issue tracking, and AI-assisted severity triaging. Architected using Next.js, MongoDB, and JWT/OAuth authentication.',
+    modal: {
+      problem:
+        'Engineering teams lack centralized, intelligent workflows for bug tracking. Most tools treat bugs as flat tickets without severity context. devOrbit solves this by combining role-based team collaboration with AI-powered bug analysis to automate triage and prioritization.',
+      architecture: [
+        'Frontend: Next.js with TypeScript and TailwindCSS',
+        'Backend: Next.js API routes with server-side logic',
+        'Database: MongoDB with Mongoose ODM',
+        'Auth: JWT tokens + Social OAuth (Google, GitHub)',
+        'AI: Xenova/Transformers for on-device severity classification',
+        'Deployment: Vercel (frontend + API)',
+      ],
+      decisions: [
+        'JWT over sessions — enables stateless authentication across serverless API routes, reducing cold-start complexity on Vercel',
+        'OAuth 2.0 — lowers friction for developer sign-up using existing GitHub/Google accounts',
+        'MongoDB — flexible document schema adapts to evolving bug metadata without migrations',
+        'On-device AI (Xenova) — avoids external API latency and costs for severity inference while keeping data private',
+      ],
+      challenges: [
+        'Token refresh flow across page navigations without interrupting user state',
+        'Role-based access control enforcement at both API middleware and UI component level',
+        'AI model cold-start latency on first classification request',
+        'Concurrent team member updates on the same bug without state conflicts',
+      ],
+      capabilities: [
+        'Multi-tenant team workspaces with configurable roles',
+        'Stateless JWT authentication with refresh token rotation',
+        'AI-powered bug severity classification (zero external API calls)',
+        'Real-time dashboard with team activity metrics',
+      ],
+    },
+    image: '/placeholder.svg',
+    technologies: ['Next.js', 'TypeScript', 'MongoDB', 'TailwindCSS', 'JWT', 'OAuth'],
+    githubUrl: 'https://github.com/Jagadeesh9110/devOrbit',
+    liveUrl: 'https://dev-orbit-rust.vercel.app/',
+    featured: true,
+    category: 'Full Stack',
+  },
+  {
+    id: 3,
+    title: 'AI-Powered Medical Chatbot',
+    description:
+      'Engineered a real-time medical chat system connecting users with AI-powered diagnostic responses. Built on React.js frontend and Node.js/Express backend with MongoDB persistence. Integrated Google Gemini API for production inference with JWT-secured endpoints.',
+    modal: {
+      problem:
+        'Medical Q&A systems require low-latency, contextually accurate responses while maintaining conversation history and user privacy. This system provides real-time AI-powered medical consultation with persistent chat history and secure authentication.',
+      architecture: [
+        'Frontend: React.js with optimized state management',
+        'Backend: Node.js + Express.js REST API',
+        'Database: MongoDB for conversation persistence',
+        'AI: Google Gemini API for production inference',
+        'Auth: JWT-based session management',
+        'Protocol: WebSocket-ready architecture for streaming responses',
+      ],
+      decisions: [
+        'Gemini API over custom model — production-grade accuracy without training infrastructure; custom model prototyped for future domain-specific fine-tuning',
+        'MongoDB — natural fit for chat history: each conversation is a document with nested message arrays',
+        'JWT auth — ensures stateless API security; tokens carry user context without server-side session storage',
+        'Express.js — lightweight middleware stack for clean request validation and error handling',
+      ],
+      challenges: [
+        'Managing streaming AI responses without blocking the event loop',
+        'Token expiration handling mid-conversation without losing chat context',
+        'Rate limiting API calls to Gemini while maintaining responsive UX',
+        'Sanitizing medical responses to avoid dangerous advice pass-through',
+      ],
+      capabilities: [
+        'Real-time AI-powered medical consultation',
+        'Persistent conversation history per user',
+        'Stateless JWT authentication',
+        'Configurable AI model switching (Gemini production / custom prototype)',
+      ],
+    },
+    image: '/placeholder.svg',
+    technologies: ['React.js', 'Node.js', 'WebSockets', 'MongoDB', 'Express.js', 'Gemini API'],
+    githubUrl: 'https://github.com/Jagadeesh9110/React-App-LLM',
+    liveUrl: 'https://github.com/Jagadeesh9110/React-App-LLM',
+    featured: false,
+    category: 'Full Stack (AI-Integrated)',
+  },
+
 ];
 
 const containerVariants = {
@@ -207,7 +208,7 @@ const Projects = () => {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="font-mono text-neon-blue mr-4">04.</span>
+              <span className="font-mono text-neon-blue mr-4">05.</span>
               My Projects
             </h1>
             <p className="text-xl text-light-slate max-w-3xl mx-auto">

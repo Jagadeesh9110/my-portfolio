@@ -47,8 +47,8 @@ const About = memo(() => {
                   prioritizing correctness, scalability, and clean separation of concerns.
                 </p>
                 <p>
-                  Currently seeking <span className="font-bold text-lightest-slate">SDE / Full-Stack internship</span> roles
-                  where I can contribute to real engineering teams and production systems.
+                  I focus on correctness, scalability, and clean system design — aiming to build
+                  software that survives real-world usage.
                 </p>
               </div>
             </Card>

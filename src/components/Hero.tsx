@@ -38,91 +38,68 @@ const socialLinks = [
 //  Created a new memoized component for the static content
 const MemoizedHeroContent = memo(() => {
   return (
-    <>
-      {/* Profile Photo */}
-      <motion.div variants={itemVariants} className="mb-8 mt-20 md:mt-24 flex justify-center">
+    <div className="grid lg:grid-cols-[55fr_45fr] gap-10 lg:gap-16 items-center w-full mt-20 md:mt-24">
+      {/* LEFT COLUMN — Identity + CTAs */}
+      <div className="order-2 lg:order-1 text-center lg:text-left">
+        <motion.p
+          variants={itemVariants}
+          className="font-mono text-neon-blue text-sm md:text-base mb-4"
+        >
+          Hi, I'm
+        </motion.p>
+
+        <motion.h1
+          variants={itemVariants}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-lightest-slate mb-3 leading-tight"
+        >
+          Manyam Jagadeeswar Reddy
+        </motion.h1>
+
+        <motion.h2
+          variants={itemVariants}
+          className="text-lg md:text-xl lg:text-2xl font-semibold text-neon-blue/80 mb-6"
+        >
+          Full-Stack Engineer building scalable real-time systems
+        </motion.h2>
+
+        <motion.p
+          variants={itemVariants}
+          className="text-base md:text-lg text-slate max-w-xl mb-8 leading-relaxed"
+        >
+          I design and deploy production-grade systems with distributed architectures, JWT-secured real-time pipelines, and cloud-native deployments on AWS.
+        </motion.p>
+
         <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="relative group"
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-8"
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-blue to-neon-green p-1 animate-pulse-glow">
-            <div className="w-full h-full rounded-full bg-dark-navy"></div>
-          </div>
-          <Avatar className="relative w-32 h-32 md:w-40 md:h-40 border-4 border-transparent hover-glow transition-all duration-300">
-            <AvatarImage
-              src="/profile.jpg"
-              alt="Manyam Jagadeeswar Reddy"
-              className="object-cover"
-            />
-            <AvatarFallback className="bg-lightest-navy text-neon-blue text-2xl md:text-3xl font-bold">
-              MJR
-            </AvatarFallback>
-          </Avatar>
-          {/* Decorative ring */}
-          <motion.div
-            className="absolute inset-0 rounded-full border-2 border-neon-blue/30"
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.1, 1],
+          <motion.a
+            href="#projects"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+              e.preventDefault();
+              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-            }}
-          />
+            className="cursor-target inline-flex items-center bg-neon-blue text-dark-navy font-medium px-7 py-3 rounded-lg transition-all duration-300 hover:bg-neon-blue/90"
+          >
+            View Projects
+          </motion.a>
+
+          <motion.a
+            href="/resume.pdf"
+            download="Manyam_Jagadeeswar_Reddy_Resume.pdf"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="cursor-target inline-flex items-center bg-transparent border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-navy font-medium px-7 py-3 rounded-lg transition-all duration-300 group"
+          >
+            <FiDownload className="w-4 h-4 mr-2 group-hover:animate-bounce" />
+            Download Resume
+          </motion.a>
         </motion.div>
-      </motion.div>
 
-      <motion.div variants={itemVariants} className="mb-6">
-        <span className="font-mono text-neon-blue text-sm md:text-base">
-          Full-Stack Engineer | Scalable Web Systems
-        </span>
-      </motion.div>
-
-      <motion.h1
-        variants={itemVariants}
-        className="text-4xl md:text-6xl lg:text-7xl xl:text-7xl font-bold text-lightest-slate mb-4"
-      >
-        Manyam Jagadeeswar Reddy
-      </motion.h1>
-
-      <motion.h2
-        variants={itemVariants}
-        className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate mb-10"
-      >
-        I design and scale production-ready full-stack systems with responsive interfaces, real-time communication, secure backend architecture, and performance-driven engineering.
-      </motion.h2>
-
-      <motion.div
-        variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
-      >
-        <motion.a
-          href="#projects"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-            e.preventDefault();
-            document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          className="cursor-target inline-flex items-center bg-neon-blue text-dark-navy font-medium px-8 py-4 rounded-lg transition-all duration-300 hover:bg-neon-blue/90 group"
-        >
-          View Projects
-        </motion.a>
-
-        <motion.a
-          href="/resume.pdf"
-          download="Manyam_Jagadeeswar_Reddy_Resume.pdf"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="cursor-target inline-flex items-center bg-transparent border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-navy font-medium px-8 py-4 rounded-lg transition-all duration-300 group"
-        >
-          <FiDownload className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-          Download Resume
-        </motion.a>
-
-        <div className="flex items-center space-x-4">
+        {/* Social Links */}
+        <motion.div variants={itemVariants} className="flex items-center justify-center lg:justify-start space-x-4">
           {socialLinks.map((social, index) => (
             <motion.a
               key={social.label}
@@ -134,17 +111,40 @@ const MemoizedHeroContent = memo(() => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + index * 0.1 }}
             >
-              <social.icon className="w-6 h-6" />
+              <social.icon className="w-5 h-5" />
               <span className="sr-only">{social.label}</span>
             </motion.a>
           ))}
+        </motion.div>
+      </div>
+
+      {/* RIGHT COLUMN — Profile Image */}
+      <motion.div
+        variants={itemVariants}
+        className="order-1 lg:order-2 flex justify-center"
+      >
+        <div className="relative">
+          {/* Clean border accent */}
+          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-neon-blue/30 to-neon-green/10 blur-sm" />
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-light-navy">
+            <Avatar className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-2xl">
+              <AvatarImage
+                src="/profile.jpg"
+                alt="Manyam Jagadeeswar Reddy"
+                className="object-cover rounded-2xl"
+              />
+              <AvatarFallback className="bg-lightest-navy text-neon-blue text-4xl md:text-5xl font-bold rounded-2xl">
+                MJR
+              </AvatarFallback>
+            </Avatar>
+          </div>
         </div>
       </motion.div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator — pinned to bottom-center of the section */}
       <motion.div
         variants={itemVariants}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 lg:col-span-2"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
@@ -158,7 +158,7 @@ const MemoizedHeroContent = memo(() => {
           />
         </motion.div>
       </motion.div>
-    </>
+    </div>
   );
 });
 
@@ -228,7 +228,7 @@ const Hero = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 max-w-6xl mx-auto section-padding text-center"
+        className="relative z-10 max-w-6xl mx-auto section-padding"
         style={{
           transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
         }}

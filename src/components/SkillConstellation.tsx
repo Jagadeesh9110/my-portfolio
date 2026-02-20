@@ -1,21 +1,44 @@
 import { motion, type Variants } from 'framer-motion';
-
 const skillCategories = [
   {
     title: 'Frontend',
-    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'],
+    skills: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'HTML5',
+      'CSS3',
+      'Tailwind CSS',
+    ],
   },
   {
     title: 'Backend',
-    skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT Authentication', 'OAuth 2.0', 'Role-Based Access Control (RBAC)'],
+    skills: [
+      'Node.js',
+      'Express.js',
+      'REST APIs',
+      'JWT Authentication',
+      'OAuth 2.0',
+      'Role-Based Access Control (RBAC)',
+      'WebSockets (Socket.IO)',
+    ],
   },
   {
     title: 'Databases',
-    skills: ['MongoDB', 'PostgreSQL', 'Mongoose'],
+    skills: [
+      'MongoDB',
+      'PostgreSQL',
+      'Mongoose',
+    ],
   },
   {
-    title: 'Systems & Real-Time',
-    skills: ['WebSockets', 'Sliding Window ARQ', 'Distributed Protocol Design', 'Congestion Control Simulation'],
+    title: 'Cloud & Infrastructure',
+    skills: [
+      'AWS EC2',
+      'Vercel',
+      'Render',
+    ],
   },
 ];
 
@@ -54,7 +77,7 @@ export const SkillConstellation = () => {
         {/* Section Title */}
         <div className="text-center mb-16">
           <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            <span className="font-mono text-neon-blue mr-4">03.</span>
+            <span className="font-mono text-neon-blue mr-4">04.</span>
             Skills & Technologies
           </h3>
           <p className="text-light-slate">
