@@ -29,6 +29,47 @@ interface Project {
 
 const projectsData: Project[] = [
   {
+    id: 4,
+    title: 'TeamConnect — AI-Powered Real-Time Collaboration',
+    description:
+      'Architected and developed a full-stack, real-time team collaboration platform designed to extract structured knowledge from conversations, preventing critical decisions and tasks from getting lost in chat threads.',
+    modal: {
+      problem:
+        'In fast-paced team chats, critical decisions and actionable tasks often get lost in the noise of continuous messaging. TeamConnect solves this by seamlessly blending real-time communication with AI-driven knowledge extraction, ensuring that team consensus and action items are automatically captured, organized, and easily searchable.',
+      architecture: [
+        'Frontend: React.js, TypeScript, Vite, TailwindCSS, Zustand, Lucide Icons',
+        'Backend: Node.js, Express.js, TypeScript, Socket.IO',
+        'Database & ORM: PostgreSQL, Prisma ORM',
+        'AI Integration: Google Gemini API (gemini-1.5-flash)',
+        'Security & Utils: JWT, Bcrypt, Nodemailer',
+      ],
+      decisions: [
+        'Workspace Architecture: Designed a scalable workspace system with role-based access control, secure email invites, and participant-level isolation for both private and group conversations.',
+        'Database & State Management: Engineered a relational database schema using PostgreSQL and Prisma ORM with optimized cascade deletions, paired with a frontend utilizing Zustand for seamless global state management.',
+        'Robust Authentication: Built a highly secure authentication flow utilizing JWT dual-tokens (short-lived access and HTTP-only refresh tokens), bcrypt password hashing, and email verification.',
+        'API & Security: Designed RESTful backend endpoints with comprehensive input validation, error handling, and strict participant verification middlewares.',
+      ],
+      challenges: [
+        'Implementing a 5-minute rate-limiting cooldown on AI generation to prevent API abuse while ensuring timely and accessible summaries.',
+        'Handling bidirectional, low-latency communication over WebSockets while supporting instant message delivery, live editing, soft deletions, and typing states.',
+        'Extracting structured knowledge, core ideas, and accurate constraints from unstructured conversational data via prompt engineering on the last 50 messages.',
+        'Maintaining seamless global state management across multiple interactive panels (Chat, Action Items, Decision Log) under heavy real-time event loads.',
+      ],
+      capabilities: [
+        'Real-Time Messaging Engine: Bidirectional, low-latency communication using Socket.IO with room-based broadcasting.',
+        'AI Knowledge Extraction: Automatic analysis of conversations to extract core ideas, decisions, and constraints into structural summaries.',
+        'Actionable Knowledge Hub: Dedicated side-panel for tracking real-time Action Items (with state cycling) and a persistent Decision Log.',
+        'Secure workspace invitations via email with comprehensive user verification.',
+      ],
+    },
+    image: '/placeholder.svg',
+    technologies: ['React.js', 'Node.js', 'Socket.IO', 'PostgreSQL', 'Prisma', 'Gemini API', 'TailwindCSS'],
+    githubUrl: 'https://github.com/Jagadeesh9110/TeamConnect',
+    liveUrl: 'https://github.com/Jagadeesh9110/TeamConnect',
+    featured: true,
+    category: 'Full Stack (Real-Time AI)',
+  },
+  {
     id: 1,
     title: 'NetViz Pro — Reliable Transport Simulator',
     description:
