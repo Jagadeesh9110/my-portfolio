@@ -86,7 +86,7 @@ const Experience = memo(() => {
                             </p>
                             <div className="space-y-0.5">
                                 <p className="text-sm text-light-slate font-medium">Freelance Full-Stack Developer</p>
-                                <p className="text-sm text-slate">Jan 2026 – Present</p>
+                                <p className="text-sm text-slate">Jan 2026 – Feb 2026</p>
                             </div>
                         </div>
 
