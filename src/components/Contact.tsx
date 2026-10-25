@@ -12,6 +12,11 @@ const Contact = () => {
 
     if (!formRef.current) return;
 
+    if (!import.meta.env.VITE_SERVICE_ID || !import.meta.env.VITE_TEMPLATE_ID || !import.meta.env.VITE_PUBLIC_KEY) {
+      alert('Email service is currently not configured. Please contact me directly at manyamjagadeeswar7989@gmail.com');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -90,7 +95,7 @@ const Contact = () => {
               </a>
 
               <a
-                href="tel:+917989461178"
+                href="tel:+919110385587"
                 className="flex items-center gap-3 text-light-slate hover:text-neon-blue transition-colors group"
               >
                 <div className="p-2 rounded-lg bg-lightest-navy/30 text-neon-blue group-hover:bg-neon-blue/10 transition-colors">
@@ -104,7 +109,7 @@ const Contact = () => {
             <div className="flex items-center gap-4 pt-2">
               {[
                 { icon: FiGithub, href: 'https://github.com/Jagadeesh9110', label: 'GitHub' },
-                { icon: FiLinkedin, href: 'https://linkedin.com/in/jagadeeswar-reddy-manyam', label: 'LinkedIn' },
+                { icon: FiLinkedin, href: 'https://www.linkedin.com/in/jagadeeswar-reddy-manyam', label: 'LinkedIn' },
                 { icon: FiMail, href: 'mailto:manyamjagadeeswar7989@gmail.com', label: 'Email' },
               ].map((social) => (
                 <a

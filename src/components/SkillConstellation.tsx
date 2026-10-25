@@ -1,5 +1,12 @@
 import { motion, type Variants } from 'framer-motion';
-const skillCategories = [
+
+interface SkillCategory {
+  title: string;
+  skills: string[];
+  fullWidth?: boolean;
+}
+
+const skillCategories: SkillCategory[] = [
   {
     title: 'Frontend',
     skills: [
@@ -13,32 +20,52 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Backend',
+    title: 'Java Backend',
+    skills: [
+      'Java',
+      'Spring Boot',
+      'Spring Data JPA',
+      'Hibernate',
+      'JDBC',
+      'REST APIs',
+    ],
+  },
+  {
+    title: 'Backend & APIs',
     skills: [
       'Node.js',
       'Express.js',
-      'REST APIs',
-      'JWT Authentication',
+      'JWT',
       'OAuth 2.0',
-      'Role-Based Access Control (RBAC)',
-      'WebSockets (Socket.IO)',
+      'RBAC',
+      'WebSockets',
     ],
   },
   {
     title: 'Databases',
     skills: [
-      'MongoDB',
       'PostgreSQL',
+      'MongoDB',
+      'Prisma',
       'Mongoose',
+      'SQL',
     ],
   },
   {
-    title: 'Cloud & Infrastructure',
+    title: 'Cloud, Tools & Core CS',
     skills: [
       'AWS EC2',
-      'Vercel',
-      'Render',
+      'Docker',
+      'Git',
+      'GitHub',
+      'Linux',
+      'Data Structures & Algorithms',
+      'OOP',
+      'DBMS',
+      'Operating Systems',
+      'Computer Networks',
     ],
+    fullWidth: true,
   },
 ];
 
@@ -76,12 +103,12 @@ export const SkillConstellation = () => {
       <div className="max-w-6xl mx-auto section-padding">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            <span className="font-mono text-neon-blue mr-4">04.</span>
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="font-mono text-neon-blue mr-3">4.</span>
             Skills & Technologies
           </h3>
-          <p className="text-light-slate">
-            Technologies I use to design, build, and ship production systems.
+          <p className="text-light-slate text-base md:text-lg">
+            Technologies I use to build full-stack applications and backend systems.
           </p>
         </div>
 
@@ -91,26 +118,28 @@ export const SkillConstellation = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {skillCategories.map((category) => (
             <motion.div
               key={category.title}
               variants={itemVariants}
-              className="glass-effect rounded-xl p-6 hover-glow transition-all duration-300"
+              className={`glass-effect rounded-2xl p-6 md:p-8 hover-glow transition-all duration-300 border border-white/10 ${
+                category.fullWidth ? 'md:col-span-2' : ''
+              }`}
             >
-              <h4 className="text-lg font-semibold text-neon-blue mb-4">
+              <h4 className="text-xl font-bold text-neon-blue mb-5">
                 {category.title}
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="whitespace-nowrap rounded-lg
+                    className="whitespace-nowrap rounded-xl
                       bg-white/5 px-4 py-2 text-sm
                       font-medium text-slate-200
                       border border-white/10
-                      hover:bg-white/10 transition-colors"
+                      hover:bg-white/10 hover:border-neon-blue/30 transition-all duration-200"
                   >
                     {skill}
                   </span>

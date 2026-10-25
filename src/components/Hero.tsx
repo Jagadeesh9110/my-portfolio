@@ -1,6 +1,5 @@
 import React, { useEffect, useState, memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { FiDownload, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 
@@ -57,16 +56,16 @@ const MemoizedHeroContent = memo(() => {
 
         <motion.h2
           variants={itemVariants}
-          className="text-lg md:text-xl lg:text-2xl font-semibold text-neon-blue/80 mb-6"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-neon-blue/80 mb-6 leading-snug"
         >
-          Full-Stack Engineer building scalable real-time systems
+          Full-Stack Developer | Backend Engineering | Software Development Apprentice at Boeing
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
           className="text-base md:text-lg text-slate max-w-xl mb-8 leading-relaxed"
         >
-          I design and deploy production-grade systems with distributed architectures, JWT-secured real-time pipelines, and cloud-native deployments on AWS.
+          I build full-stack applications, backend services, and real-time systems, with an interest in clean architecture, reliable APIs, and scalable software.
         </motion.p>
 
         <motion.div
@@ -86,7 +85,7 @@ const MemoizedHeroContent = memo(() => {
             View Projects
           </motion.a>
 
-          <motion.a
+          {/* <motion.a
             href="/resume.pdf"
             download="Manyam_Jagadeeswar_Reddy_Resume.pdf"
             whileHover={{ scale: 1.05 }}
@@ -95,7 +94,7 @@ const MemoizedHeroContent = memo(() => {
           >
             <FiDownload className="w-4 h-4 mr-2 group-hover:animate-bounce" />
             Download Resume
-          </motion.a>
+          </motion.a> */}
         </motion.div>
 
         {/* Social Links */}

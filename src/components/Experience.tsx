@@ -36,13 +36,38 @@ const Experience = memo(() => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-20"
+                    className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
                         <span className="font-mono text-neon-blue mr-4">03.</span>
                         Experience
                     </h2>
                     <div className="w-24 h-1 bg-neon-blue mx-auto rounded-full" />
+                </motion.div>
+
+                {/* Boeing Entry — First Experience Entry */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.1 }}
+                    className="mb-12"
+                >
+                    <div className="glass-effect rounded-xl p-6 md:p-8 border border-white/10 hover-glow transition-all duration-300">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                            <div>
+                                <h3 className="text-2xl md:text-3xl font-bold text-lightest-slate">
+                                    Boeing
+                                </h3>
+                                <p className="text-base text-neon-blue font-medium mt-1">
+                                    Software Development Apprentice
+                                </p>
+                            </div>
+                            <div className="text-sm text-slate font-mono bg-lightest-navy/40 px-3.5 py-1.5 rounded-lg border border-white/5 w-fit">
+                                June 2026 – Present
+                            </div>
+                        </div>
+                    </div>
                 </motion.div>
 
                 {/* Two-Column Layout — image-dominant */}

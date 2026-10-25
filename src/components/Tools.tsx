@@ -6,6 +6,7 @@ import {
     SiGithub,
     SiVsco,
     SiPostman,
+    SiDocker,
 } from 'react-icons/si';
 
 const tools = [
@@ -13,6 +14,7 @@ const tools = [
     { name: 'Git', icon: SiGit, color: '#F05032' },
     { name: 'GitHub', icon: SiGithub, color: '#E8E8E8' },
     { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
+    { name: 'Docker', icon: SiDocker, color: '#2496ED' },
 ];
 
 const staggerContainerVariants: Variants = {
@@ -60,7 +62,7 @@ export const Tools = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto"
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-3xl mx-auto"
                 >
                     {tools.map((tool) => (
                         <motion.div key={tool.name} variants={toolItemVariants}>

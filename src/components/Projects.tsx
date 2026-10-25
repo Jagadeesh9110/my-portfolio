@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { FiGithub, FiExternalLink, FiStar } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiStar, FiMessageSquare, FiActivity, FiTerminal, FiCpu, FiLayers } from 'react-icons/fi';
 
 interface ProjectModal {
   problem: string;
@@ -26,6 +26,53 @@ interface Project {
   featured: boolean;
   category: string;
 }
+
+const ProjectThumbnail = ({ project, inModal = false }: { project: Project; inModal?: boolean }) => {
+  const [imageError, setImageError] = useState(false);
+  const hasValidImage = project.image && project.image !== '/placeholder.svg' && !imageError;
+
+  const iconMap: Record<number, React.ComponentType<{ className?: string }>> = {
+    4: FiMessageSquare,
+    1: FiActivity,
+    2: FiTerminal,
+    3: FiCpu,
+  };
+
+  const IconComponent = iconMap[project.id] || FiLayers;
+
+  if (hasValidImage) {
+    return (
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-full object-cover object-top"
+        onError={() => setImageError(true)}
+      />
+    );
+  }
+
+  return (
+    <div className={`w-full h-full bg-gradient-to-br from-lightest-navy/95 via-light-navy to-dark-navy flex flex-col items-center justify-center p-6 text-center relative overflow-hidden select-none ${inModal ? 'rounded-lg' : ''}`}>
+      {/* Background technical grid pattern */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#00f5ff_1px,transparent_1px)] [background-size:16px_16px]" />
+      
+      {/* Icon with glowing aura */}
+      <div className="relative mb-3">
+        <div className="absolute -inset-2 bg-neon-blue/20 rounded-full blur-md" />
+        <div className={`relative ${inModal ? 'p-4' : 'p-3'} rounded-xl bg-lightest-navy/70 border border-neon-blue/30 text-neon-blue`}>
+          <IconComponent className={inModal ? 'w-10 h-10' : 'w-7 h-7'} />
+        </div>
+      </div>
+
+      <div className={`text-lightest-slate font-bold ${inModal ? 'text-xl' : 'text-base'} mb-1 tracking-tight z-10 px-4`}>
+        {project.title.split('—')[0].trim()}
+      </div>
+      <p className="text-xs font-mono text-neon-blue/80 z-10">
+        {project.category}
+      </p>
+    </div>
+  );
+};
 
 const projectsData: Project[] = [
   {
@@ -286,46 +333,50 @@ const Projects = () => {
                     <div className="relative">
                       <div className="aspect-video overflow-hidden rounded-t-lg">
                         <motion.div
-                          className="w-full h-full bg-gradient-to-br from-lightest-navy to-light-navy flex items-center justify-center"
+                          className="w-full h-full"
                           whileHover={{ scale: 1.05 }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
                         >
-                          <div className="text-4xl font-bold text-neon-blue/30">
-                            {project.title.charAt(0)}
-                          </div>
+                          <ProjectThumbnail project={project} />
                         </motion.div>
                       </div>
 
                       {project.featured && (
-                        <div className="absolute top-4 right-4">
-                          <Badge className="bg-neon-green text-dark-navy">
+                        <div className="absolute top-4 right-4 z-20">
+                          <Badge className="bg-neon-green text-dark-navy font-semibold">
                             <FiStar className="w-3 h-3 mr-1" />
                             Featured
                           </Badge>
                         </div>
                       )}
 
-                      <div className="absolute inset-0 bg-dark-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+                      <div className="absolute inset-0 bg-dark-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3 z-20">
                         <Button
                           size="sm"
                           onClick={(e) => {
                             e.stopPropagation();
                             window.open(project.githubUrl, '_blank');
                           }}
-                          className="bg-lightest-navy hover:bg-neon-blue hover:text-dark-navy"
+                          className="bg-lightest-navy hover:bg-neon-blue hover:text-dark-navy transition-colors"
+                          aria-label="View Source Code"
                         >
-                          <FiGithub className="w-4 h-4" />
+                          <FiGithub className="w-4 h-4 mr-1" />
+                          Code
                         </Button>
-                        <Button
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.liveUrl, '_blank');
-                          }}
-                          className="bg-lightest-navy hover:bg-neon-blue hover:text-dark-navy"
-                        >
-                          <FiExternalLink className="w-4 h-4" />
-                        </Button>
+                        {project.liveUrl && project.liveUrl !== project.githubUrl && (
+                          <Button
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(project.liveUrl, '_blank');
+                            }}
+                            className="bg-neon-blue hover:bg-neon-blue/90 text-dark-navy transition-colors"
+                            aria-label="View Live Project"
+                          >
+                            <FiExternalLink className="w-4 h-4 mr-1" />
+                            Live
+                          </Button>
+                        )}
                       </div>
                     </div>
 
@@ -389,10 +440,8 @@ const Projects = () => {
         <Dialog open={!!selectedProject} onOpenChange={handleCloseModal}>
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glass-effect border-neon-blue/20">
             <div className="relative">
-              <div className="aspect-video bg-gradient-to-br from-lightest-navy to-light-navy flex items-center justify-center rounded-lg">
-                <div className="text-6xl font-bold text-neon-blue/30">
-                  {selectedProject.title.charAt(0)}
-                </div>
+              <div className="aspect-video overflow-hidden rounded-lg">
+                <ProjectThumbnail project={selectedProject} inModal={true} />
               </div>
             </div>
 
@@ -406,18 +455,20 @@ const Projects = () => {
               <div className="flex justify-end space-x-3">
                 <Button
                   onClick={() => window.open(selectedProject.githubUrl, '_blank')}
-                  className="bg-lightest-navy hover:bg-neon-blue hover:text-dark-navy"
+                  className="bg-lightest-navy hover:bg-neon-blue hover:text-dark-navy transition-colors"
                 >
                   <FiGithub className="w-4 h-4 mr-2" />
                   Code
                 </Button>
-                <Button
-                  onClick={() => window.open(selectedProject.liveUrl, '_blank')}
-                  className="bg-neon-blue hover:bg-neon-blue/90 text-dark-navy"
-                >
-                  <FiExternalLink className="w-4 h-4 mr-2" />
-                  Live Demo
-                </Button>
+                {selectedProject.liveUrl && selectedProject.liveUrl !== selectedProject.githubUrl && (
+                  <Button
+                    onClick={() => window.open(selectedProject.liveUrl, '_blank')}
+                    className="bg-neon-blue hover:bg-neon-blue/90 text-dark-navy transition-colors"
+                  >
+                    <FiExternalLink className="w-4 h-4 mr-2" />
+                    Live Demo
+                  </Button>
+                )}
               </div>
 
               {/* Problem */}

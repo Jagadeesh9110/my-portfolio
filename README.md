@@ -8,27 +8,37 @@ A modern, responsive single-page developer portfolio showcasing my projects, ski
 
 ## 👋 About Me
 
-I am **Manyam Jagadeeswar Reddy**, a Full Stack Developer and Systems Engineering Enthusiast, currently pursuing B.Tech in Data Science & Artificial Intelligence at **IIIT Dharwad** (2027).
+I am **Manyam Jagadeeswar Reddy** — Full-Stack Developer | Backend Engineering | Software Development Apprentice at **Boeing**. Currently pursuing B.Tech in Data Science & Artificial Intelligence at **IIIT Dharwad** (Expected 2027).
 
-I enjoy building scalable web applications and exploring the intersection of systems, performance, and modern frontend engineering.
+I build full-stack applications, backend services, and real-time systems, with an interest in clean architecture, reliable APIs, and scalable software.
 
-## 🛠️ Tech Stack
+## 💼 Experience
 
-**Frontend**
-- React
-- TypeScript
-- Tailwind CSS
+- **Boeing** — Software Development Apprentice (June 2026 – Present)
+- **FutureStocks** — Freelance Full-Stack Developer (Jan 2026 – Feb 2026)
 
-**Tooling**
-- Vite
-- ESLint
+## 🛠️ Key Technical Skills
 
-**UI & Motion**
-- shadcn/ui
-- Framer Motion
+- **Java Backend**: Java, Spring Boot, Spring Data JPA, Hibernate, JDBC, REST APIs
+- **Frontend**: React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS
+- **Backend & APIs**: Node.js, Express.js, JWT, OAuth 2.0, RBAC, WebSockets
+- **Databases**: PostgreSQL, MongoDB, Prisma, Mongoose, SQL
+- **Cloud & Tools**: AWS EC2, Docker, Git, GitHub, Linux, VS Code, Postman
+- **Core CS**: Data Structures & Algorithms, OOP, DBMS, Operating Systems, Computer Networks
 
-**Deployment**
-- Vercel
+## 🏆 Achievements
+
+- **LeetCode Rating**: 1519 (Max Contest Rating)
+- **Problems Solved**: 450+
+- **Active Contests**: 40+ (LeetCode & CodeChef)
+- **LeetCode Badge**: 200 Days Badge (2025)
+
+## 💻 Featured Projects
+
+- **TeamConnect**: AI-Powered Real-Time Team Collaboration (React, TypeScript, Node.js, PostgreSQL, Prisma, Socket.IO, Gemini API)
+- **NetViz Pro**: Reliable Transport Protocol Simulator (Java, Reliable UDP, Node.js, React, WebSockets)
+- **devOrbit**: AI Bug Intelligence Platform (Next.js, TypeScript, MongoDB, Tailwind CSS, JWT, OAuth 2.0)
+- **AI Medical Chatbot**: Real-time health diagnostic chatbot (React, Node.js, Express.js, MongoDB, Gemini API)
 
 ## ✨ Features
 
